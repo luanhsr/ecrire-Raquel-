@@ -1,0 +1,66 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+.logoler{
+    border-radius: 100px;
+    width: 80px;
+}
+
+body , html {
+    background-color: darkmagenta;
+    margin: 0;
+    height: 100%;
+    position: absolute;
+    font-family: 'Courier New';
+    
+
+}
+/*  definindo um tamanho minimo de cada item na tabela para que tudo seja preenchido uniformemente*/
+
+.tableicon td{
+    
+}
+/* definindo que a tabela vai para 100% da tela e aplicando alguns estilos*/
+.tableicon {
+    width: 100%;
+    border-style: inset;
+    border-color:mediumvioletred;
+    background-color:DarkMagenta; 
+}
+/* estilizando todas as colunas da tabela para deixar com mais um pouco de estilo */
+.tableicon td  {
+    border: 2px solid MediumVioletRed;
+    text-align: center;
+    border-radius: 15px;
+    border-style:outset;
+    background-color: rgba(255, 255, 255, 0.377);
+}
+/* definindo o tamnho dos icones, aqui também poderia ser alterado cores */
+.tableicon i {
+    font-size: 25px;
+}
+/*  OBSERVE que é o mesmo padrão ja estilizado acima, entretanto
+o elemento hover indica que só vai ser aplicado a edição quando se passar
+o mause em cima do elemento.*/
+.tableicon td:hover {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.521);
+}
+.papermain {
+    width: 100vw;
+    height: 100vh;
+    background-color: papayawhip;   
+
+}
+.tableicon td button {
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+        
+}
+
+

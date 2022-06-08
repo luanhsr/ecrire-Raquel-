@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <script src="https://kit.fontawesome.com/6be499605c.js" crossorigin="anonymous"></script>            <!-- o scritp acima é para os icones-->
+    <meta charset="UTF-8">
+    <title> écrire, Raquel </title>
+    <link rel="stylesheet" href="estilo/style.css">
+    <script src="script/index.js"> </script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kdam+Thmor+Pro">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Josefin+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Patrick+Hand">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Press+Start+2P">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monofett">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Creepster">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Blaka">
+    
+    
+</head>
+<body>
+    <header>
+        <div class="apresentação" id="presentation">     
+            <img class="logoler" src="imagens/logo_size.jpg">
+        </div>     
+   </header>
+   <section>
+       <div class="menu" id="menu" contenteditable="false" >
+            <table class="tableicon">
+                <tr class="iconesedit">
+                        <td> <button class="btnPo" id="btnPo" ><i class="fa-solid fa-arrow-pointer"></i></button></i></td>
+                        <td> <button class="btnBold" id="btnBold"><i class="fa-solid fa-bold"></i></button></i></td>
+                        <td> <button class="btnUnderline" id="btnUnderline"><i class="fa-solid fa-underline"></i></button></td>
+                        <td> <button class="btnItalic" id="btnItalic" > <i class="fa-solid fa-italic"></i></button></td>
+                        <td> 
+                            <select id="selectFont">
+                                <option value="arial">Arial</option>
+                                <option value="Times New Roman">    Times New Roman</option>
+                                <option value="Courier New"> Courie New</option>
+                                <option value="Monospace">monospace</option>
+                                <option value="Tangerine"> Tangerine</option>
+                                <option value="Kdam Thmor Pro">Kdam Thmor Pro</option>
+                                <option value="Courier New">Courier New</option>
+                                <option value="Roboto Mono">Roboto Mono</option>
+                                <option value="Anton">Anton </option>
+                                <option value="Lobster">Lobster </option>
+                                <option value="Indie Flower">Indie Flower </option>
+                                <option value="Patrick Hand">Patrick Hand</option>
+                                <option value="Amatic SC">Amatic SC</option>
+                                <option value="Orbitron">Orbitron </option>
+                                <option value="Monoton">Monoton</option>
+                                <option value="Monofett">Monofett</option>
+                                <option value="Creepster">Creepster</option>
+                                <option value="Blaka">Blaka</option>
+                                <option value="Josefin Sans">Josefin Sans</option>
+                                
+                            </select><i class="fa-solid fa-font"></i>
+                        </td>
+                        <td><i class="fa-solid fa-text-height"></i><input type="number" id="fontTall" name="quantity" min="1" max="30" id="fontTall" class="fontTall"></td>
+                        <td><i class="fa-solid fa-font" type="color"> <input type="color" class="btnColor" id="btnColor"></i><i class="fa-solid fa-palette"></i></button></td>
+                        <td class="btnTopic" id="btnTopic" ><i class="fa-solid fa-list-ul"></i> </input>></td>
+                        <td class="btnTable" id="btnTable"><i class="fa-solid fa-table"></i></td>
+                        <td class="btnCt" id="btnCt"><i class="fa-solid fa-font"></i><i class="fa-solid fa-border-top-left"></i></td>
+                        <td class="btnFo" id="btnFo"><i class="fa-solid fa-shapes"></i></td>
+                        <td class="btnImage" id="btnImage"><i class="fa-solid fa-file-image"></i></i></td>
+                        <td class="btnVi" id="btnVi"><i class="fa-solid fa-file-video"></i></td>
+                        <td class="btnAu" id="btnAu"><i class="fa-solid fa-file-audio"></i></td>
+                </tr>
+            </table>
+       </div>
+   </section>
+   <section>
+        <div class="paper" id="paper">
+            <div id="papermain" class="papermain" placeholder="digite algo" contenteditable="true" spellcheck="false">
+               
+                texto teste para testar a fonte 12345.%¨&*(123123) Áaão LETRAS MAIUSCULAS
+                
+            </div>
+        </div>
+   </section>
+        <p class="fake-text" id="fake-text"></p>
+   <footer class="rodape" id="footer">
+       
+   </footer>
+    
+</body>
+</html>
