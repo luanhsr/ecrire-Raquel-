@@ -2,15 +2,18 @@ window.addEventListener("load", function () {
      /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
         adicionar eventos em variáveis nulas, então insiro todo o código depois que a página recarregar, só ai são capturados os valores.
                                               */
+   
     const boldBtn = document.querySelector('#btnBold');
     const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada "botão" para alterar o texto
     const italicBtn = document.querySelector("#btnItalic");         
     const btnColor = document.querySelector("#btnColor");               // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var
     const selectFont = document.querySelector("#selectFont");
     const fontTall = document.querySelector("#fontTall");
+    const btnTopic = document.querySelector("#btnTopic");
     
     boldBtn.addEventListener('click' , ()=> {                                    
         this.document.execCommand('bold');
+        window.alert('PAREM DE BRIGAR ISSO NÃO TEM LÓGICA ');
     });
 
     underlineBtn.addEventListener('click' , ()=> {
@@ -34,10 +37,11 @@ window.addEventListener("load", function () {
     fontTall.addEventListener('click' , ()=> {
         this.document.execCommand("fontSize" , false , fontTall.value);
         /* o tamanho é limitado a 7 opções mas para versão inicial é suficiente, limitação do recurso fontSize tendo os tamanhos já padrão 1 a 7
-        comparei os valores em um outro editor de texto e deixei aproximadamente no HTML.
-           
+        comparei os valores em um outro editor de texto e deixei aproximadamente no HTML.      
         */
-
-    })
-
+    });
+    btnTopic.addEventListener('click' , ()=> {
+        document.execCommand( "insertUnorderedList");
+    });
+    
 });
