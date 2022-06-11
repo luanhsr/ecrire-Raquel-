@@ -13,7 +13,6 @@ window.addEventListener("load", function () {
     
     boldBtn.addEventListener('click' , ()=> {                                    
         this.document.execCommand('bold');
-        window.alert('PAREM DE BRIGAR ISSO NÃO TEM LÓGICA ');
     });
 
     underlineBtn.addEventListener('click' , ()=> {
@@ -43,5 +42,4 @@ window.addEventListener("load", function () {
     btnTopic.addEventListener('click' , ()=> {
         document.execCommand( "insertUnorderedList");
     });
-    
 });
