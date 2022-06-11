@@ -47,8 +47,10 @@ window.addEventListener("load", function () {
     btnTable.addEventListener('click' , () => {
         let linha = +prompt('Qual número de linhas?'); // depois inserir no html
         let coluna= +prompt('Qual número de colunas?'); // envia um console igual o alert e é inserido o numero de linhas e colunas desejado
-
-        if (linha && coluna) { //se existir linha e coluna
+        if (isNaN(linha) || isNaN(coluna)) { //validando para que entre apenas numeros
+            window.alert("ta procurando o que? digita um numero ai"); 
+        }
+        else { //se existir linha e coluna
 
             let t    = document.createElement("table"); // cria na variavel t o elemento tabela, não funciona se não especificar onde vai ficar o elemento criado
 
