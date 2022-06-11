@@ -10,6 +10,7 @@ window.addEventListener("load", function () {
     const selectFont = document.querySelector("#selectFont");
     const fontTall = document.querySelector("#fontTall");
     const btnTopic = document.querySelector("#btnTopic");
+    const btnTable = document.querySelector("#btnTable");
     
     boldBtn.addEventListener('click' , ()=> {                                    
         this.document.execCommand('bold');
@@ -40,6 +41,42 @@ window.addEventListener("load", function () {
         */
     });
     btnTopic.addEventListener('click' , ()=> {
-        document.execCommand( "insertUnorderedList");
+        document.execCommand( "insertUnorderedList"); // cria uma lista não ordenada, por algum motivo o css padding=0 deixa esse evento impossibilitado
     });
+    // depois atualizar essa tabela para que ela possa ser movida
+    btnTable.addEventListener('click' , () => {
+        let linha = +prompt('Qual número de linhas?'); // depois inserir no html
+        let coluna= +prompt('Qual número de colunas?'); // envia um console igual o alert e é inserido o numero de linhas e colunas desejado
+
+        if (linha && coluna) { //se existir linha e coluna
+
+            let t    = document.createElement("table"); // cria na variavel t o elemento tabela, não funciona se não especificar onde vai ficar o elemento criado
+
+            t.border = "1";                         
+            t.style.borderCollapse = "collapse";
+            t.style.border = "1px solid blue";
+            t.style.margin = "auto";
+                                                    /*verificar se é possível inserir trecho no css*/
+            for( let l=0; l<linha; l++) 
+            {
+                let tr   = document.createElement("tr"); 
+                tr.style.border = "1px solid blue";
+                                                        // em quanto l menor que linha l repete, ou seja cria uma linha a cada loop 
+                for( let c=0; c<coluna; c++)
+                {
+                    let td   = document.createElement("td"); 
+                    td.style.border = "1px solid blue";
+                    td.innerHTML = "_";
+                    tr.appendChild(td);                          //  mesma lógica
+                }
+                t.appendChild(tr);
+      
+            }
+            papermain.appendChild(t); // o elemento pai papermain recebe o elemento t como filho. ou seja a tabela.
+            
+        }
+        
+    });
+    
+
 });
