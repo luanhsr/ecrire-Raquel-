@@ -11,11 +11,11 @@ window.addEventListener("load", function () {
     const fontTall = document.querySelector("#fontTall");
     const btnTopic = document.querySelector("#btnTopic");
     const btnTable = document.querySelector("#btnTable");
+    const btnText = document.querySelector("#btnCreateTextBox");
     
     boldBtn.addEventListener('click' , ()=> {                                    
         this.document.execCommand('bold');
     });
-
     underlineBtn.addEventListener('click' , ()=> {
         this.document.execCommand('underline');
     });
@@ -52,7 +52,7 @@ window.addEventListener("load", function () {
         }
         else { //se existir linha e coluna
 
-            let t    = document.createElement("table"); // cria na variavel t o elemento tabela, não funciona se não especificar onde vai ficar o elemento criado
+            let t = document.createElement("table"); // cria na variavel t o elemento tabela, não funciona se não especificar onde vai ficar o elemento criado
 
             t.border = "1";                         
             t.style.borderCollapse = "collapse";
@@ -61,7 +61,7 @@ window.addEventListener("load", function () {
                                                     /*verificar se é possível inserir trecho no css*/
             for( let l=0; l<linha; l++) 
             {
-                let tr   = document.createElement("tr"); 
+                let tr = document.createElement("tr"); 
                 tr.style.border = "1px solid blue";
                                                         // em quanto l menor que linha l repete, ou seja cria uma linha a cada loop 
                 for( let c=0; c<coluna; c++)
@@ -74,11 +74,19 @@ window.addEventListener("load", function () {
                 t.appendChild(tr);
       
             }
-            papermain.appendChild(t); // o elemento pai papermain recebe o elemento t como filho. ou seja a tabela.
-            
+            papermain.appendChild(t); // o elemento pai papermain recebe o elemento t como filho. ou seja a tabela.   
         }
-        
     });
+    
+    btnText.addEventListener('click' , ()=> {
+        let t = document.createElement('div');
+        t.style.height ="150px";
+        t.style.width ="150px";
+        t.innerHTML = "digite seu texto aqui!"
+        t.style.border = "1px solid black"
+        papermain.appendChild(t);
+    });
+    
     
 
 });
