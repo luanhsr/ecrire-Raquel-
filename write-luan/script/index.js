@@ -12,6 +12,7 @@ window.addEventListener("load", function () {
     const btnTopic = document.querySelector("#btnTopic");
     const btnTable = document.querySelector("#btnTable");
     const btnText = document.querySelector("#btnCreateTextBox");
+    const btnFormula = document.querySelector("#btnFormula");
     
     boldBtn.addEventListener('click' , ()=> {                                    
         this.document.execCommand('bold');
@@ -44,6 +45,11 @@ window.addEventListener("load", function () {
         document.execCommand( "insertUnorderedList"); // cria uma lista não ordenada, por algum motivo o css padding=0 deixa esse evento impossibilitado
     });
     // depois atualizar essa tabela para que ela possa ser movida
+
+    const exitT = document.createElement("p");
+    exitT.innerText = ".";  
+     // para poder sair dos elementos criados (gambearra)
+
     btnTable.addEventListener('click' , () => {
         let linha = +prompt('Qual número de linhas?'); // depois inserir no html
         let coluna= +prompt('Qual número de colunas?'); // envia um console igual o alert e é inserido o numero de linhas e colunas desejado
@@ -71,10 +77,13 @@ window.addEventListener("load", function () {
                     td.innerHTML = "_";
                     tr.appendChild(td);                          //  mesma lógica
                 }
+
                 t.appendChild(tr);
       
             }
+
             papermain.appendChild(t); // o elemento pai papermain recebe o elemento t como filho. ou seja a tabela.   
+            papermain.appendChild(exitT);
         }
     });
     
@@ -85,8 +94,21 @@ window.addEventListener("load", function () {
         t.innerHTML = "digite seu texto aqui!"
         t.style.border = "1px solid black"
         papermain.appendChild(t);
+        papermain.appendChild(exitT);
+
     });
-    
+    btnFormula.addEventListener('click' , ()=> {
+
+        let t = document.createElement('div');
+        t.style.height ="200px";
+        t.style.width ="200px";
+        t.innerHTML = "FORMULA QUADRADA"
+        t.style.border = "1px solid black"
+        papermain.appendChild(t);
+        papermain.appendChild(exitT);
+        // DEPOIS fazer mais formulas e alterar para um select no HTML
+        
+    });
     
 
 });
