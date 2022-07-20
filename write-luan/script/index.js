@@ -13,7 +13,7 @@ window.addEventListener("load", function () {
     const btnTable = document.querySelector("#btnTable");
     const btnText = document.querySelector("#btnCreateTextBox");
     const btnFormula = document.querySelector("#btnFormula");
-    
+    const imgInput = document.querySelector("#image-input");
     boldBtn.addEventListener('click' , ()=> {                                    
         this.document.execCommand('bold');
     });
@@ -108,6 +108,17 @@ window.addEventListener("load", function () {
         papermain.appendChild(exitT);
         // DEPOIS fazer mais formulas e alterar para um select no HTML
         
+    });
+    imgInput.addEventListener('change', function (){
+        if (this.files && this.files[0]) {
+            var img =document.createElement('img');
+            img.onload = () => {
+                URL.revokeObjectURL(img.src);  // no longer needed, free memory
+            }
+            img.src = URL.createObjectURL(this.files[0]);
+            papermain.appendChild(img);
+        }
+
     });
     
 
