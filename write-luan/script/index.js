@@ -128,10 +128,13 @@ window.addEventListener("load", function () {
    audioInput.addEventListener('change', function(){
         if (this.files && this.files[0]) {
             let  audio = document.createElement('audio');
-            audio.onload = () => {
-                URL.revokeObjectURL(audio.src);
+            audio.setAttribute('controls','controls');
+            audio.setAttribute('accept','audio/*');
+            let freader = new FileReader();
+            freader.readAsDataURL(audioInput.files[0]);
+            freader.onload = function () {
+                audio.src=freader.result;
             }
-            audio.src = URL.createObjectURL(this.files[0]);
             papermain.appendChild(audio);
         }
    });
@@ -139,15 +142,13 @@ window.addEventListener("load", function () {
      if (this.files && this.files[0]) {
         let video = document.createElement('video');
         video.setAttribute('controls' , 'controls');
-        video.setAttribute('accept' , 'video/*')
+        video.setAttribute('accept' , 'video/*');
         let freader = new FileReader();
         freader.readAsDataURL(videoInput.files[0]);
         freader.onload = function () {
             video.src=freader.result;
         }
         papermain.appendChild(video);
-
-
      } 
    }); 
 
