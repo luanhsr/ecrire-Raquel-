@@ -13,7 +13,9 @@ window.addEventListener("load", function () {
     const btnTable = document.querySelector("#btnTable");
     const btnText = document.querySelector("#btnCreateTextBox");
     const btnFormula = document.querySelector("#btnFormula");
-    const imgInput = document.querySelector("#image-input");
+    const imgInput = document.querySelector("#imageInput");
+    const audioInput = document.querySelector('#inputAudio');
+    const videoInput = document.querySelector(`#inputVideo`);
     boldBtn.addEventListener('click' , ()=> {                                    
         this.document.execCommand('bold');
     });
@@ -106,20 +108,47 @@ window.addEventListener("load", function () {
         t.style.border = "1px solid black"
         papermain.appendChild(t);
         papermain.appendChild(exitT);
-        // DEPOIS fazer mais formulas e alterar para um select no HTML
+        // DEPOIS fazer mais formulas e alterar para um select no HTML*
         
     });
     imgInput.addEventListener('change', function (){
         if (this.files && this.files[0]) {
-            var img =document.createElement('img');
+            let img = document.createElement('img');
             img.onload = () => {
-                URL.revokeObjectURL(img.src);  // no longer needed, free memory
+                URL.revokeObjectURL(img.src);  // 
             }
-            img.src = URL.createObjectURL(this.files[0]);
+            img.src = URL.createObjectURL(this.files[0]); 
             papermain.appendChild(img);
+            // a logica foi focada em apenas encaminhar os arquvos nao foi pensado em tamanho ou responsividade
+            // verificar responsividade depois *
         }
-
+        
     });
     
+   audioInput.addEventListener('change', function(){
+        if (this.files && this.files[0]) {
+            let  audio = document.createElement('audio');
+            audio.onload = () => {
+                URL.revokeObjectURL(audio.src);
+            }
+            audio.src = URL.createObjectURL(this.files[0]);
+            papermain.appendChild(audio);
+        }
+   });
+   videoInput.addEventListener('change' , function(){
+     if (this.files && this.files[0]) {
+        let video = document.createElement('video');
+        video.setAttribute('controls' , 'controls');
+        video.setAttribute('accept' , 'video/*')
+        let freader = new FileReader();
+        freader.readAsDataURL(videoInput.files[0]);
+        freader.onload = function () {
+            video.src=freader.result;
+        }
+        papermain.appendChild(video);
+
+
+     } 
+   }); 
 
 });
