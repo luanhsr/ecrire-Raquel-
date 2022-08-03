@@ -6,7 +6,7 @@ window.addEventListener("load", function () {
     const boldBtn = document.querySelector('#btnBold');
     const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada "botão" para alterar o texto
     const italicBtn = document.querySelector("#btnItalic");         
-    const btnColor = document.querySelector("#btnColor");               // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var
+    const colorInput = document.querySelector("#inputColor");               // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var
     const selectFont = document.querySelector("#selectFont");
     const fontTall = document.querySelector("#fontTall");
     const btnTopic = document.querySelector("#btnTopic");
@@ -27,8 +27,8 @@ window.addEventListener("load", function () {
     });
      /* adiciona a variável (que está com botao) o evento 'click' executando a função seguinte: esse documento executa o comando bold/italic/underline
         ou seja o documento selecionado recebe o estilo citado  */
-    btnColor.addEventListener('click', ()=>{
-        this.document.execCommand("foreColor",false, btnColor.value);
+    colorInput.addEventListener('click', ()=>{
+        this.document.execCommand("foreColor",false, inputColor.value);
     });
     selectFont.addEventListener('click' , ()=>{
         this.document.execCommand("fontName", false, selectFont.value);

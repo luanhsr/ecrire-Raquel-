@@ -26,19 +26,17 @@
 </head>
 <body>
     <header>
-        <div class="apresentação" id="presentation">     
+        <div class="apresentacao" id="presentation">     
             <img class="logoler" src="imagens/logo_size.jpg">
         </div>     
    </header>
    <section>
-       <div class="menu" id="menu" contenteditable="false" >
-            <table class="tableicon">
-                <tr class="iconesedit">
-                        <td> <button class="btnPo" id="btnPo" ><i class="fa-solid fa-arrow-pointer"></i></button></i></td>
-                        <td> <button class="btnBold" id="btnBold"><i class="fa-solid fa-bold"></i></button></i></td>
-                        <td> <button class="btnUnderline" id="btnUnderline"><i class="fa-solid fa-underline"></i></button></td>
-                        <td> <button class="btnItalic" id="btnItalic" > <i class="fa-solid fa-italic"></i></button></td>
-                        <td> 
+                <div class="tableicon">
+                        <button class="btnPo" id="btnPo" ><i class="fa-solid fa-arrow-pointer"></i></button>
+                        <button class="btnBold" id="btnBold"><i class="fa-solid fa-bold"></i></button>
+                        <button class="btnUnderline" id="btnUnderline"><i class="fa-solid fa-underline"></i></button>
+                        <button class="btnItalic" id="btnItalic" > <i class="fa-solid fa-italic"></i></button>
+                        <i class="fa-solid fa-font" id="bug1">
                             <select id="selectFont">
                                 <option value="arial">Arial</option>
                                 <option value="Times New Roman">    Times New Roman</option>
@@ -59,11 +57,9 @@
                                 <option value="Creepster">Creepster</option>
                                 <option value="Blaka">Blaka</option>
                                 <option value="Josefin Sans">Josefin Sans</option>
-                                
-                            </select><i class="fa-solid fa-font"></i>
-                        </td>
-                        <td>
-                            <i class="fa-solid fa-text-height"></i>
+                        </select>
+                        </i>
+                        <i class="fa-solid fa-text-height" id="bug1">
                             <select type="number" id="fontTall" class="fontTall">
                                 <option value="1"> 8 </option>
                                 <option value="2"> 10 </option>
@@ -73,31 +69,36 @@
                                 <option value="6"> 25 </option>
                                 <option value="7"> 34 </option>
                                 <!-- por em quanto é limitado a 7 opções pois o parametro só suporta 7 opções irei alterar isso futuramente-->
-                             </select> 
-                        </td>
-                        <td><i class="fa-solid fa-font" type="color"> <input type="color" class="btnColor" id="btnColor"></i><i class="fa-solid fa-palette"></i></button></td>
-                        <td><button class="btnTopic" id="btnTopic" ><i class="fa-solid fa-list-ul"></i></button></td>
-                        <td><button class="btnTable" id="btnTable"><i class="fa-solid fa-table"></i></button> </td>
-                        <td><button class="btnCreateTextBox" id="btnCreateTextBox"><i class="fa-solid fa-font"></i><i class="fa-solid fa-border-top-left"></i></button></td>
-                        <td><button class="btnFormula" id="btnFormula"> <i class="fa-solid fa-shapes"></i> </button></td> 
-                        <td><input type="file" accept="image/*"  id="imageInput" class="imageInput"> <i class="fa-solid fa-file-image" ></i> </td> <!-- depois retirar padrão-->
-                        <td><input type="file" accept="video/*" id="inputVideo" class="inputVideo"> <i class="fa-solid fa-file-video"></i></td>
-                        <td><input type="file" accept="audio/*" class="inputAudio" id="inputAudio"> <i class="fa-solid fa-file-audio"></i></td>
-                </tr>
-            </table>
-       </div>
-   </section>
-   <br>
-   <section>
-        <div class="paper" id="paper">
+                        </select> 
+                        </i>
 
-            <div id="papermain" class="papermain" placeholder="digite algo" contenteditable="true" spellcheck="false">
-            
-            </div>
-        </div>
+                        <label for="inputColor">          
+                            <i class="fa-solid fa-palette"></i>              
+                        </label>
+                        <input type="color" class="inputColor" id="inputColor">
+                        <button class="btnTopic" id="btnTopic" ><i class="fa-solid fa-list-ul"></i></button>
+                        <button class="btnTable" id="btnTable"><i class="fa-solid fa-table"></i></button> 
+                        <button class="btnCreateTextBox" id="btnCreateTextBox"><i class="fa-solid fa-border-top-left"></i></button>
+                        <button class="btnFormula" id="btnFormula"> <i class="fa-solid fa-shapes"></i> </button> 
+                        <label for="imageInput">
+                            <i class="fa-solid fa-file-image" ></i>
+                        </label>
+                        <input type="file" accept="image/*" id="imageInput" class="imageInput">   
+                        <label for="inputVideo">
+                            <i class="fa-solid fa-file-video"></i>
+                        </label>
+                        <input type="file" accept="video/*" id="inputVideo" class="inputVideo"> 
+                        <label for="inputAudio">
+                            <i class="fa-solid fa-file-audio"></i>
+                        </label>
+                        <input type="file" accept="audio/*" class="inputAudio" id="inputAudio"> 
+                </div>
+        <div id="papermain" class="papermain" placeholder="digite algo" contenteditable="true" spellcheck="false"> </div>
    </section>
-       
-   </footer>
+
+        
+    </body>       
+   
     
 </body>
 </html>
