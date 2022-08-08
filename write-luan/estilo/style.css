@@ -1,6 +1,5 @@
 *{
     box-sizing: border-box;
-    font-family: 'Courier New';
     margin: 0;  
 }
 .apresentacao{
@@ -49,6 +48,11 @@ select{
     text-align: center;
     border-radius: 30px;
     margin: 1px;
+    transition: all 0.5s;  
+}
+i:hover {
+    -webkit-filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
+    filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
 }
 .papermain {
     width: 100vw;
