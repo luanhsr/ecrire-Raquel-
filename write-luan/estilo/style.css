@@ -24,8 +24,8 @@ body {
     border-right: none;
     background-color:DarkMagenta; 
 }
-input[type='file'], 
-input[type='color'] {
+input[type='file']
+ {
     display: none
   }
 button {
@@ -50,7 +50,7 @@ select{
     margin: 1px;
     transition: all 0.5s;  
 }
-i:hover {
+.tableicon i:hover {
     -webkit-filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
     filter: drop-shadow(15px 10px 5px rgba(0,0,0,.5));
 }

@@ -1,4 +1,5 @@
 window.addEventListener("load", function () {
+    console.log('pagina carregada');
      /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
         adicionar eventos em variáveis nulas, então insiro todo o código depois que a página recarregar, só ai são capturados os valores.
                                               */
@@ -6,7 +7,7 @@ window.addEventListener("load", function () {
     const boldBtn = document.querySelector('#btnBold');
     const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada "botão" para alterar o texto
     const italicBtn = document.querySelector("#btnItalic");         
-    const colorInput = document.querySelector("#inputColor");               // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var
+    const btnColor = document.querySelector("#btnColor");               // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var
     const selectFont = document.querySelector("#selectFont");
     const fontTall = document.querySelector("#fontTall");
     const btnTopic = document.querySelector("#btnTopic");
@@ -14,8 +15,14 @@ window.addEventListener("load", function () {
     const btnText = document.querySelector("#btnCreateTextBox");
     const btnFormula = document.querySelector("#btnFormula");
     const imgInput = document.querySelector("#imageInput");
-    const audioInput = document.querySelector('#inputAudio');
-    const videoInput = document.querySelector(`#inputVideo`);
+    const audioInput = document.querySelector("#inputAudio");
+    const videoInput = document.querySelector("#inputVideo");
+    const btnSave = document.querySelector("#save");
+
+    if (localStorage.info != null) {
+        document.querySelector("#papermain").innerHTML =  localStorage.info;
+    }
+
     boldBtn.addEventListener('click' , ()=> {                                    
         this.document.execCommand('bold');
     });
@@ -27,8 +34,9 @@ window.addEventListener("load", function () {
     });
      /* adiciona a variável (que está com botao) o evento 'click' executando a função seguinte: esse documento executa o comando bold/italic/underline
         ou seja o documento selecionado recebe o estilo citado  */
-    colorInput.addEventListener('click', ()=>{
-        this.document.execCommand("foreColor",false, inputColor.value);
+    btnColor.addEventListener('click', ()=>{
+        this.document.execCommand("foreColor",false, btnColor.value);
+        btnColor.setAttribute(input, type="color")
     });
     selectFont.addEventListener('click' , ()=>{
         this.document.execCommand("fontName", false, selectFont.value);
@@ -44,6 +52,7 @@ window.addEventListener("load", function () {
         */
     });
     btnTopic.addEventListener('click' , ()=> {
+
         document.execCommand( "insertUnorderedList"); // cria uma lista não ordenada, por algum motivo o css padding=0 deixa esse evento impossibilitado
     });
     // depois atualizar essa tabela para que ela possa ser movida
@@ -151,5 +160,10 @@ window.addEventListener("load", function () {
         papermain.appendChild(video);
      } 
    }); 
+
+   btnSave.addEventListener('click' , () =>{
+        console.log("clicado");
+        localStorage.info = document.getElementById('papermain').innerHTML;
+   });
 
 });
