@@ -71,9 +71,12 @@
                                 <!-- por em quanto é limitado a 7 opções pois o parametro só suporta 7 opções irei alterar isso futuramente-->
                         </select> 
                         </i>
+                        <label for="btnColor" >
 
+                            <i class="fa-solid fa-palette"></i>
+                            <input type="color" class="btnColor" id="btnColor"></input>
+                        </label>
                         
-                        <input type="color" class="btnColor" id="btnColor">  <i class="fa-solid fa-palette"></i>  </input>
                         <button class="btnTopic" id="btnTopic" ><i class="fa-solid fa-list-ul"></i></button>
                         <button class="btnTable" id="btnTable"><i class="fa-solid fa-table"></i></button> 
                         <button class="btnCreateTextBox" id="btnCreateTextBox"><i class="fa-solid fa-border-top-left"></i></button>
@@ -91,10 +94,12 @@
                         </label>
                         <input type="file" accept="audio/*" class="inputAudio" id="inputAudio"> 
                         <button id="save" class="save"><i class="fa-solid fa-floppy-disk"></i></button>
+                        <button id="downPDF" class="downPDF"><i class="fa-solid fa-file-arrow-down"></i></button>
                 </div>
-        <div id="papermain" class="papermain" placeholder="digite algo" contenteditable="true" spellcheck="false"> </div>
-   </section>
 
+        <div id="papermain" class="papermain" placeholder="digite algo" contenteditable="true" spellcheck="false"> </div>
+
+   </section>
         
     </body>       
    
