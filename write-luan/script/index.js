@@ -2,7 +2,6 @@ window.addEventListener("load", function () {
      /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
         adicionar eventos em variáveis nulas, então insiro todo o código depois que a página recarregar, só ai são capturados os valores.
                                               */
-   
     const boldBtn = document.querySelector('#btnBold');
     const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada "botão" para alterar o texto
     const italicBtn = document.querySelector("#btnItalic");         
@@ -20,35 +19,33 @@ window.addEventListener("load", function () {
     const btnDown = document.querySelector("#downPDF");
 
     boldBtn.addEventListener('click' , ()=> {                                    
-        this.document.execCommand('bold');
+        document.execCommand('bold');
     });
     underlineBtn.addEventListener('click' , ()=> {
-        this.document.execCommand('underline');
+        document.execCommand('underline');
     });
     italicBtn.addEventListener('click', ()=>{
-        this.document.execCommand('italic');
+        document.execCommand('italic');
     });
      /* adiciona a variável (que está com botao) o evento 'click' executando a função seguinte: esse documento executa o comando bold/italic/underline
         ou seja o documento selecionado recebe o estilo citado  */
     btnColor.addEventListener('click', ()=>{
-        this.document.execCommand("foreColor",false, btnColor.value);
+        document.execCommand("foreColor",false, btnColor.value);
         btnColor.setAttribute(input, type="color")
     });
     selectFont.addEventListener('click' , ()=>{
-        this.document.execCommand("fontName", false, selectFont.value);
+        document.execCommand("fontName", false, selectFont.value);
     });
      /* usando o mesmo recurso nativo, execCommand, fore color é deixado como falso (padrão) até ser selecionado o valor que esta no input color, assim alterando
      a fonte, a mesma lógica se aplica ao fontName que altera a font do texto selecionado a partir da opção selecionada no html, algumas fontes são buscadas na api
      do google fonts por URL então não irá funcionar a menos que esteja conectado a internet  */
-
     fontTall.addEventListener('click' , ()=> {
-        this.document.execCommand("fontSize" , false , fontTall.value);
+        document.execCommand("fontSize" , false , fontTall.value);
         /* o tamanho é limitado a 7 opções mas para versão inicial é suficiente, limitação do recurso fontSize tendo os tamanhos já padrão 1 a 7
         comparei os valores em um outro editor de texto e deixei aproximadamente no HTML.      
         */
     });
     btnTopic.addEventListener('click' , ()=> {
-
         document.execCommand( "insertUnorderedList"); // cria uma lista não ordenada, por algum motivo o css padding=0 deixa esse evento impossibilitado
     });
     // depois atualizar essa tabela para que ela possa ser movida
@@ -84,16 +81,12 @@ window.addEventListener("load", function () {
                     td.innerHTML = "_";
                     tr.appendChild(td);                          //  mesma lógica
                 }
-
                 t.appendChild(tr);
-      
             }
-
             papermain.appendChild(t); // o elemento pai papermain recebe o elemento t como filho. ou seja a tabela.   
             papermain.appendChild(exitT);
         }
     });
-    
     btnText.addEventListener('click' , ()=> {
         let t = document.createElement('div');
         t.style.height ="150px";
@@ -102,10 +95,8 @@ window.addEventListener("load", function () {
         t.style.border = "1px solid black"
         papermain.appendChild(t);
         papermain.appendChild(exitT);
-
     });
     btnFormula.addEventListener('click' , ()=> {
-
         let t = document.createElement('div');
         t.style.height ="200px";
         t.style.width ="200px";
@@ -114,7 +105,6 @@ window.addEventListener("load", function () {
         papermain.appendChild(t);
         papermain.appendChild(exitT);
         // DEPOIS fazer mais formulas e alterar para um select no HTML*
-        
     });
     imgInput.addEventListener('change', function (){
         if (this.files && this.files[0]) {
@@ -127,9 +117,7 @@ window.addEventListener("load", function () {
             // a logica foi focada em apenas encaminhar os arquvos nao foi pensado em tamanho ou responsividade
             // verificar responsividade depois *
         }
-        
     });
-    
    audioInput.addEventListener('change', function(){
         if (this.files && this.files[0]) {
             let  audio = document.createElement('audio');
@@ -172,7 +160,7 @@ window.addEventListener("load", function () {
             'width': 170  //set width
         },
         function(a) {
-            doc.save("HTML2PDF.pdf"); // save file name as HTML2PDF.pdf
+            doc.save("documento basico"); // save file name as HTML2PDF.pdf
         });
    });
 });
