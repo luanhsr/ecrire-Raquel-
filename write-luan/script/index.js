@@ -1,5 +1,4 @@
 window.addEventListener("load", function () {
-    console.log('pagina carregada');
      /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
         adicionar eventos em variáveis nulas, então insiro todo o código depois que a página recarregar, só ai são capturados os valores.
                                               */
@@ -18,10 +17,7 @@ window.addEventListener("load", function () {
     const audioInput = document.querySelector("#inputAudio");
     const videoInput = document.querySelector("#inputVideo");
     const btnSave = document.querySelector("#save");
-
-    if (localStorage.info != null) {
-        document.querySelector("#papermain").innerHTML =  localStorage.info;
-    }
+    const btnDown = document.querySelector("#downPDF");
 
     boldBtn.addEventListener('click' , ()=> {                                    
         this.document.execCommand('bold');
@@ -162,8 +158,21 @@ window.addEventListener("load", function () {
    }); 
 
    btnSave.addEventListener('click' , () =>{
-        console.log("clicado");
         localStorage.info = document.getElementById('papermain').innerHTML;
    });
-
+   if (localStorage.info != null) {
+    document.querySelector("#papermain").innerHTML =  localStorage.info;
+    } // se o cache nao estiver nulo, carrega o que esta salvo, nao precisa da condicao else ja que nada e pra acontecer caso nao tenha salvo 
+   btnDown.addEventListener('click' , () => {
+        var doc = new jsPDF();
+        doc.fromHTML(document.getElementById("papermain"), // page element which you want to print as PDF
+        15,
+        15, 
+        {
+            'width': 170  //set width
+        },
+        function(a) {
+            doc.save("HTML2PDF.pdf"); // save file name as HTML2PDF.pdf
+        });
+   });
 });
