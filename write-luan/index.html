@@ -26,14 +26,24 @@
     
 </head>
 <body>
-    <header>
+    <header class="head">  
+        <div class="navFile">
+            <nav>
+                <ul>
+                    <li class="Fa"><i class="fa-solid fa-square-caret-down"></i>
+                        <ul> 
+                            <li>NOTA INICIAL</li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </div> <!--navFile-->
         <div class="apresentacao" id="presentation">     
             <img class="logoler" src="imagens/logo_size.jpg">
-        </div>     
-   </header>
-   <section>
+        </div>  <!--apresentacao-->
+   </header> 
+   <section class="editor"> <!--editor-->
                 <div class="tableicon">
-                        <button class="btnPo" id="btnPo" ><i class="fa-solid fa-arrow-pointer"></i></button>
                         <button class="btnBold" id="btnBold"><i class="fa-solid fa-bold"></i></button>
                         <button class="btnUnderline" id="btnUnderline"><i class="fa-solid fa-underline"></i></button>
                         <button class="btnItalic" id="btnItalic" > <i class="fa-solid fa-italic"></i></button>
@@ -76,8 +86,7 @@
 
                             <i class="fa-solid fa-palette"></i>
                             <input type="color" class="btnColor" id="btnColor"></input>
-                        </label>
-                        
+                        </label>                        
                         <button class="btnTopic" id="btnTopic" ><i class="fa-solid fa-list-ul"></i></button>
                         <button class="btnTable" id="btnTable"><i class="fa-solid fa-table"></i></button> 
                         <button class="btnCreateTextBox" id="btnCreateTextBox"><i class="fa-solid fa-border-top-left"></i></button>
@@ -96,10 +105,10 @@
                         <input type="file" accept="audio/*" class="inputAudio" id="inputAudio"> 
                         <button id="save" class="save"><i class="fa-solid fa-floppy-disk"></i></button>
                         <button id="downPDF" class="downPDF"><i class="fa-solid fa-file-arrow-down"></i></button>
-                </div>
-   </section>
-   <section>
+                </div>  <!--table icon-->
+   </section> <!--editor-->
+   <section class="papel">
     <div id="papermain" class="papermain" placeholder="digite algo" contenteditable="true" spellcheck="false"> </div>
-   </section>     
+   </section> <!--papel-->
 </body>
 </html>

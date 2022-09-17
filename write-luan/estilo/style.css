@@ -2,7 +2,11 @@
     box-sizing: border-box;
     margin: 0;  
 }
-
+:root {
+    --collorPrimary: #4C0033;
+    --collorSecundary: #462DFC;
+    --collorSelect: #330157;
+}
 .apresentacao{
    text-align: center;
    margin: 0;
@@ -12,18 +16,19 @@
     border-style:groove;
     border-radius: 100%;
     width: 75px;
+    border-color: var(--collorSecundary);
 }
 body {
-    background-color: darkmagenta;
+    background-color: var(--collorPrimary)
 }
 .tableicon {
     text-align: center;
     width: 100%;
     border-style:groove;
-    border-color:mediumvioletred;
+    border-color:var(--collorSecundary);
     border-left: none;
     border-right: none;
-    background-color:DarkMagenta; 
+    background-color:var(--collorPrimary);
 }
 input[type='file'],
 input[type='color']
@@ -44,21 +49,19 @@ select{
 .tableicon i {
     cursor: pointer;
     font-size: 25px;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: var(--collorSecundary);
     width: 50px;
     text-align: center;
     border-radius: 30px;
     margin: 1px;
     transition: all 0.5s;  
 }
-.tableicon i:hover {
+.tableicon i:hover , .tableicon i:hover:active {
     -webkit-transform: scale(1.5);
     transform: scale(1.5);
 }
 .papermain {
-    max-width: 100%;
-    max-height: 100%;
     width: 100%;
     margin: auto;
     height: 100%;
@@ -69,4 +72,41 @@ select{
 }
 #bug1{
     cursor: default;
+}
+.navFile nav {
+    width: 50px;
+    background-color: var(--collorPrimary);
+}
+.navFile ul li {
+    border: 3px solid var(--collorSecundary);
+    background-color: var(--collorPrimary);
+    list-style: none;
+    width: 50px;
+    float: center;
+
+}
+.navFile ul li ul li {
+    width: 200px;
+    height: 260px;
+    border-top-right-radius: 15px;
+    border-left-style: dashed;
+    text-align: center;
+    transition: all 0.5s;  
+}
+.navFile ul ul{
+    display: none;
+    margin: 0;
+
+    
+}
+.navFile ul li:hover>ul,  .navFile ul li:active>ul   {
+    display: block;
+    position: absolute;
+    border-style: double;
+    background-color: var(--collorSecundary);
+}
+.navFile ul li ul li:hover , .navFile ul li ul li:active {
+    background-color: var(--collorSelect);
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
 }
