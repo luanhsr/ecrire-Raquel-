@@ -54,9 +54,10 @@ window.addEventListener("load", function () {
     exitT.innerText = ".";  
      // para poder sair dos elementos criados (gambearra)
 
-    btnTable.addEventListener('click' , () => {
-        let linha = +prompt('Qual número de linhas?'); // depois inserir no html
-        let coluna= +prompt('Qual número de colunas?'); // envia um console igual o alert e é inserido o numero de linhas e colunas desejado
+    btnTable.addEventListener('click' , () => { // criar um MODAL   para substituir o prompt depois
+        let linha = +prompt('Qual número de linhas?'); // obs importante o + na frente serve para transformar o que for inserido em int em vez de string 
+        let coluna= +prompt('Qual número de colunas?'); // envia um prompt igual o alert e é inserido o numero de linhas e colunas desejado
+        // substituir por um MODAL
         if (isNaN(linha) || isNaN(coluna)) { //validando para que entre apenas numeros
             window.alert("ta procurando o que? digita um numero ai"); 
         }
@@ -144,13 +145,18 @@ window.addEventListener("load", function () {
         papermain.appendChild(video);
      } 
    }); 
-
-   btnSave.addEventListener('click' , () =>{
-        localStorage.info = document.getElementById('papermain').innerHTML;
-   });
    if (localStorage.info != null) {
-    document.querySelector("#papermain").innerHTML =  localStorage.info;
+        document.querySelector("#papermain").innerHTML =  localStorage.info;
+
     } // se o cache nao estiver nulo, carrega o que esta salvo, nao precisa da condicao else ja que nada e pra acontecer caso nao tenha salvo 
+   btnSave.addEventListener('click' , () =>{
+        let nameNote = prompt('Qual número de linhas?'); 
+        localStorage.info = document.getElementById('papermain').innerHTML;
+        notes = document.getElementById('notes'); // pegando a lista (nota)
+        let li = document.createElement('li'); // criando um item li para inserir na lista
+        li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
+        notes.appendChild(li) // pinserindo li na lista
+   });
    btnDown.addEventListener('click' , () => {
         var doc = new jsPDF();
         doc.fromHTML(document.getElementById("papermain"), // page element which you want to print as PDF
