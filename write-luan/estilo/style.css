@@ -30,8 +30,12 @@ body {
     border-right: none;
     background-color:var(--collorPrimary);
 }
-input[type='file'],
-input[type='color']
+input [type='color']
+{
+    border-radius: 30px;
+    background-color: red;
+}
+input[type='file']
 {
     display: none
 }
@@ -74,15 +78,16 @@ select{
     cursor: default;
 }
 .navFile nav {
-    width: 50px;
-    background-color: var(--collorPrimary);
+    width: 140px;
+    background-color: var(--collorPrimary);   
 }
 .navFile ul li {
     border: 3px solid var(--collorSecundary);
     background-color: var(--collorPrimary);
     list-style: none;
-    width: 50px;
-    float: center;
+    width: 120px;
+  
+
 
 }
 .navFile ul li ul li {
@@ -96,7 +101,7 @@ select{
 .navFile ul ul{
     display: none;
     margin: 0;
-
+    float: left;
     
 }
 .navFile ul li:hover>ul,  .navFile ul li:active>ul   {
