@@ -5,7 +5,7 @@ window.addEventListener("load", function () {
     const boldBtn = document.querySelector('#btnBold');
     const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada "botão" para alterar o texto
     const italicBtn = document.querySelector("#btnItalic");         
-    const colorInput = document.querySelector("#inputColor");         // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var
+    const btnColor = document.querySelector("#btnColor");               // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var
     const selectFont = document.querySelector("#selectFont");
     const fontTall = document.querySelector("#fontTall");
     const btnTopic = document.querySelector("#btnTopic");
@@ -29,8 +29,9 @@ window.addEventListener("load", function () {
     });
      /* adiciona a variável (que está com botao) o evento 'click' executando a função seguinte: esse documento executa o comando bold/italic/underline
         ou seja o documento selecionado recebe o estilo citado  */
-    colorInput.addEventListener('click', ()=>{
-        this.document.execCommand("foreColor",false, inputColor.value);
+    btnColor.addEventListener('click', ()=>{
+        document.execCommand("foreColor",false, btnColor.value);
+        btnColor.setAttribute(input, type="color")
     });
     selectFont.addEventListener('click' , ()=>{
         document.execCommand("fontName", false, selectFont.value);
@@ -149,7 +150,7 @@ window.addEventListener("load", function () {
 
     } // se o cache nao estiver nulo, carrega o que esta salvo, nao precisa da condicao else ja que nada e pra acontecer caso nao tenha salvo 
    btnSave.addEventListener('click' , () =>{
-        let nameNote = prompt('Qual o nome da nota?'); 
+        let nameNote = prompt('Qual número de linhas?'); 
         localStorage.info = document.getElementById('papermain').innerHTML;
         notes = document.getElementById('notes'); // pegando a lista (nota)
         let li = document.createElement('li'); // criando um item li para inserir na lista
