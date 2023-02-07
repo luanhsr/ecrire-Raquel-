@@ -30,8 +30,7 @@ body {
     border-right: none;
     background-color:var(--collorPrimary);
 }
-input[type='file'],
-input[type='color']
+input[type='file']
 {
     display: none
 }
