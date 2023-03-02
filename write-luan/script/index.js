@@ -1,7 +1,15 @@
+/*function teste1 () {
+    console.log (arrNotes);
+    console.log (` isso e uma string: ${localStorage.allNotes} `);
+}botao pra testar algo novo
+*/
+var arrNotes = new Array(); // um array para salvar as notas inserido fora do load pois se toda vez que carregar a pagina ira crialo vazio
+var transfornNotesString = new String('vazia'); // e necessario definir como string pois js interpreta como objeto na hora da conversao
 window.addEventListener("load", function () {
      /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
         adicionar eventos em variáveis nulas, então insiro todo o código depois que a página recarregar, só ai são capturados os valores.
-                                              */
+    
+        */
     const boldBtn = document.querySelector('#btnBold');
     const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada "botão" para alterar o texto
     const italicBtn = document.querySelector("#btnItalic");         
@@ -144,18 +152,106 @@ window.addEventListener("load", function () {
         papermain.appendChild(video);
      } 
    }); 
-   if (localStorage.info != null) {
-        document.querySelector("#papermain").innerHTML =  localStorage.info;
 
-    } // se o cache nao estiver nulo, carrega o que esta salvo, nao precisa da condicao else ja que nada e pra acontecer caso nao tenha salvo 
-   btnSave.addEventListener('click' , () =>{
-        let nameNote = prompt('qual nome da nota?'); 
-        localStorage.info = document.getElementById('papermain').innerHTML;
-        notes = document.getElementById('notes'); // pegando a lista (nota)
-        let li = document.createElement('li'); // criando um item li para inserir na lista
-        li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
-        notes.appendChild(li) // pinserindo li na lista
-   });
+   if (localStorage.allNotes != null) {
+        arrNotesTransformToArray = localStorage.allNotes;
+        arrNotes = arrNotesTransformToArray.split(',§--byLuanHenrique--§');
+        arrNotes.pop();
+      
+    }
+    if (localStorage.info != null) {
+        document.querySelector("#papermain").innerHTML =  localStorage.info;
+        
+        if (localStorage.liNotes == null) {
+            document.querySelector("#notes").innerHTML = "Notas Salvas:"
+        } else {
+                document.querySelector("#notes").innerHTML = localStorage.liNotes;
+                
+                document.getElementById("SelectLi0").addEventListener ('click' , () => {
+                    console.log('busque conhecimento');
+                    document.querySelector("#papermain").innerHTML =  arrNotes[1];;
+                })
+                /*
+                document.querySelector("#nota0").addEventListener ('click' , () => {
+                document.querySelector("#papermain").innerHTML =  arrNotes[1];;
+                
+                })
+                */
+            }
+
+    }
+    n =0
+    btnSave.addEventListener('click' , () =>{
+
+            if (arrNotes == 0) {
+                let nameNote = prompt('qual nome da nota?'); 
+                notes = document.getElementById('notes'); // pegando a lista (nota)
+                let li = document.createElement('li');
+                li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
+                li.setAttribute('id' , 'SelectLi' +n);
+                n++
+                notes.appendChild(li) // pinserindo li na lista
+                localStorage.info = document.getElementById('papermain').innerHTML;
+                localStorage.liNotes = document.getElementById('notes').innerHTML; // inserindo as notas laterais salvas tambem no local storage
+                arrNotes.push(localStorage.info); // insere o que esta no localstorage dentro do array
+                arrNotes.push('§--byLuanHenrique--§'); // isso e uma separacao dos arrays
+
+                var saveArrNotes = arrNotes;
+                transfornNotesString = saveArrNotes.toString();
+                localStorage.allNotes = transfornNotesString;
+
+            } 
+            else if (arrNotes[arrNotes.length-1] == '§--byLuanHenrique--§' && arrNotes.length > 0) {
+                let nameNote = prompt('qual nome da nota?'); 
+                notes = document.getElementById('notes'); // pegando a lista (nota)
+                let li = document.createElement('li');
+                li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
+                li.setAttribute('id' , 'SelectLi' +n);
+                n++
+                notes.appendChild(li) // pinserindo li na lista
+                localStorage.info = document.getElementById('papermain').innerHTML;
+                localStorage.liNotes = document.getElementById('notes').innerHTML; // inserindo as notas laterais salvas tambem no local storage
+                arrNotes.push(localStorage.info); // insere o que esta no localstorage dentro do array
+                arrNotes.push('§--byLuanHenrique--§'); // isso e uma separacao dos arrays
+
+                var saveArrNotes = arrNotes;
+                transfornNotesString = saveArrNotes.toString();
+                localStorage.allNotes = transfornNotesString;
+
+            } 
+            else {
+                    
+
+                let element = '§--byLuanHenrique--§';
+                let insertInArray = [];
+                arrNotes.forEach((e, i) => {
+                    if (i === 0) {
+                            return insertInArray = [element, e, element]
+                    }
+                    insertInArray.push(e, element)
+                    })
+
+                arrNotes= insertInArray;
+
+                let nameNote = prompt('qual nome da nota?'); 
+                notes = document.getElementById('notes'); // pegando a lista (nota)
+                let li = document.createElement('li');
+                li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
+                li.setAttribute('id' , 'SelectLi' +n);
+                n++
+                notes.appendChild(li) // pinserindo li na lista
+                localStorage.info = document.getElementById('papermain').innerHTML;
+                localStorage.liNotes = document.getElementById('notes').innerHTML; // inserindo as notas laterais salvas tambem no local storage
+                arrNotes.push(localStorage.info); // insere o que esta no localstorage dentro do array
+                arrNotes.push('§--byLuanHenrique--§'); // isso e uma separacao dos arrays
+    
+                var saveArrNotes = arrNotes;
+                transfornNotesString = saveArrNotes.toString();
+                localStorage.allNotes = transfornNotesString;
+
+            }    
+    });
+   
    btnDown.addEventListener('click' , () => {
         var doc = new jsPDF();
         doc.fromHTML(document.getElementById("papermain"), // page element which you want to print as PDF

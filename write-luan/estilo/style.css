@@ -34,11 +34,12 @@ input[type='file']
 {
     display: none
 }
-button {
+/*button {
    background-color: transparent;
    border-radius: 75%;
    border-color: transparent;
 }
+*/
 select{
     width: 15px;
     background-color: transparent;
@@ -108,4 +109,9 @@ select{
     background-color: var(--collorSelect);
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
+}
+.teste button {
+    color: red;
+    border: 1px;
+    background-color: white;
 }
