@@ -153,11 +153,15 @@ window.addEventListener("load", function () {
      } 
    }); 
 
-   if (localStorage.allNotes != null) {
-        arrNotesTransformToArray = localStorage.allNotes;
-        arrNotes = arrNotesTransformToArray.split(',§--byLuanHenrique--§');
-        arrNotes.pop();
-      
+   if (localStorage.allNotes != null) { // quando a pagina recarregar vai verificar se tem algum elemento em todas as notas salvas
+        arrNotesTransformToArray = localStorage.allNotes; // feito a verificacao cria-se um array para receber todas as notas salvas em formato de string separado uma a uma por §--byLuanHenrique--§
+            
+        result = arrNotesTransformToArray.search(`-byLuanHenrique-`); // isso verifica se existe a separacao, se nao ira excluir notas validas, a funcao search procura elementos citados e retorna o valor da sua posicao, se nao tiver ele retorna -1 se tiver vai mostrar na onde esta na string
+        if (result >= 0) { // ou seja, se tiver qualquer §--byLuanHenrique--§  em qualquer lugar sera feito a logica
+            arrNotes = arrNotesTransformToArray.split(',§--byLuanHenrique--§'); // basicamente o array volta a receber todas as notas salvas, separando em cada indice cada nota, sendo separadas por §--byLuanHenrique--§
+            arrNotes.pop(); // aqui basicamente apaga o ultimo elemento, pois depois de transformando de string para array, fica as ultimas virgulas da string que antes era um array 
+        }
+        
     }
     if (localStorage.info != null) {
         document.querySelector("#papermain").innerHTML =  localStorage.info;
@@ -166,9 +170,7 @@ window.addEventListener("load", function () {
             document.querySelector("#notes").innerHTML = "Notas Salvas:"
         } else {
                 document.querySelector("#notes").innerHTML = localStorage.liNotes;
-                
-                document.getElementById("SelectLi0").addEventListener ('click' , () => {
-                    console.log('busque conhecimento');
+                document.getElementById("selectNote0").addEventListener ('click' , () => {
                     document.querySelector("#papermain").innerHTML =  arrNotes[1];;
                 })
                 /*
@@ -180,15 +182,35 @@ window.addEventListener("load", function () {
             }
 
     }
+    // a logica a baixo e para garantir que toda vez que o usuario clicar em salvar, ira salvar uma nota em cada indice de array e criar uma separacao para que posteriormente possa ser 
+    // separado novamente, se nao ao recarregar a pagina todos os indices (notas) estarao em uma unica nota e em um unico indice
     n =0
     btnSave.addEventListener('click' , () =>{
 
-            if (arrNotes == 0) {
+            if (arrNotes == 0) { // 1 caso a array ainda estiver vazio salva normalmente
+                let nameNote = prompt('qual nome da nota?');  
+                notes = document.getElementById('notes'); // pegando a lista (nota)
+                let li = document.createElement('li');
+                li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
+                li.setAttribute('id' , 'selectNote' +n); // inserindo o atributo para posteriormente selecionar a nota desejada
+                n++
+                notes.appendChild(li) // inserindo li na lista de mptas
+                localStorage.info = document.getElementById('papermain').innerHTML; // salvando a informacao que o usuario digitou no cache .info
+                localStorage.liNotes = document.getElementById('notes').innerHTML; // inserindo as notas laterais salvas tambem no local storage
+                arrNotes.push(localStorage.info); // insere a nota salva no cache tambem dentro de um array, onde estarao todas as notas, pois o localstorage nao salva arrays apenas string
+                arrNotes.push('§--byLuanHenrique--§'); // isso e uma separa cada nota de um array, durante a conversao sera excluido
+
+                var saveArrNotes = arrNotes; // um array recebendo todas as notas salvas
+                transfornNotesString = saveArrNotes.toString();  // transformando todas as notas salvas ou seja todo o array em uma string, para que possa ser salvo no localStorage, visto que so salva string
+                localStorage.allNotes = transfornNotesString; // agora sim salvo no cache todas as notas salvas separadas por §--byLuanHenrique--§
+                
+            } 
+            else if (arrNotes[arrNotes.length-1] == '§--byLuanHenrique--§' && arrNotes.length > 0) { // quando a pagina recarregar e tiver esse array com a separacao continua salvando normalmente, se nao ira ser inserido os elementos do array com a separacao
                 let nameNote = prompt('qual nome da nota?'); 
                 notes = document.getElementById('notes'); // pegando a lista (nota)
                 let li = document.createElement('li');
                 li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
-                li.setAttribute('id' , 'SelectLi' +n);
+                li.setAttribute('id' , 'selectNote' +n);
                 n++
                 notes.appendChild(li) // pinserindo li na lista
                 localStorage.info = document.getElementById('papermain').innerHTML;
@@ -201,43 +223,25 @@ window.addEventListener("load", function () {
                 localStorage.allNotes = transfornNotesString;
 
             } 
-            else if (arrNotes[arrNotes.length-1] == '§--byLuanHenrique--§' && arrNotes.length > 0) {
-                let nameNote = prompt('qual nome da nota?'); 
-                notes = document.getElementById('notes'); // pegando a lista (nota)
-                let li = document.createElement('li');
-                li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
-                li.setAttribute('id' , 'SelectLi' +n);
-                n++
-                notes.appendChild(li) // pinserindo li na lista
-                localStorage.info = document.getElementById('papermain').innerHTML;
-                localStorage.liNotes = document.getElementById('notes').innerHTML; // inserindo as notas laterais salvas tambem no local storage
-                arrNotes.push(localStorage.info); // insere o que esta no localstorage dentro do array
-                arrNotes.push('§--byLuanHenrique--§'); // isso e uma separacao dos arrays
-
-                var saveArrNotes = arrNotes;
-                transfornNotesString = saveArrNotes.toString();
-                localStorage.allNotes = transfornNotesString;
-
-            } 
-            else {
+            else { // quando o array identificar que ja foi feito a separacao, ele deve inserir a separacao novamente a cada indice do array
                     
 
-                let element = '§--byLuanHenrique--§';
-                let insertInArray = [];
-                arrNotes.forEach((e, i) => {
-                    if (i === 0) {
-                            return insertInArray = [element, e, element]
+                let element = '§--byLuanHenrique--§';  // cria o elemento que separa os indices 
+                let insertInArray = []; // cria um array vazio para receber tudo
+                arrNotes.forEach((e, i) => { //percorre o array buscando os elementos e os indices
+                    if (i === 0) { // se o indice for indentico a 0 ou seja o primeiro indice
+                            return insertInArray = [e, element] // ira retornar o elemento do array com o novo elemento
                     }
-                    insertInArray.push(e, element)
+                    insertInArray.push(e, element) // depois de feito pela primeira vez, ira a cada elementod do array inserir o novo elemento de separacao
                     })
-
+                    // pronto, agora toda vez que a pagina recarregar e as paginas nao estiverem separadas, ira ser realizado a separacao 
                 arrNotes= insertInArray;
 
                 let nameNote = prompt('qual nome da nota?'); 
                 notes = document.getElementById('notes'); // pegando a lista (nota)
                 let li = document.createElement('li');
                 li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
-                li.setAttribute('id' , 'SelectLi' +n);
+                li.setAttribute('id' , 'selectNote' +n);
                 n++
                 notes.appendChild(li) // pinserindo li na lista
                 localStorage.info = document.getElementById('papermain').innerHTML;
