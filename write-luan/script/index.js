@@ -159,7 +159,6 @@ window.addEventListener("load", function () {
         result = arrNotesTransformToArray.search(`-byLuanHenrique-`); // isso verifica se existe a separacao, se nao ira excluir notas validas, a funcao search procura elementos citados e retorna o valor da sua posicao, se nao tiver ele retorna -1 se tiver vai mostrar na onde esta na string
         if (result >= 0) { // ou seja, se tiver qualquer §--byLuanHenrique--§  em qualquer lugar sera feito a logica
             arrNotes = arrNotesTransformToArray.split(',§--byLuanHenrique--§,'); // basicamente o array volta a receber todas as notas salvas, separando em cada indice cada nota, sendo separadas por §--byLuanHenrique--§
-            arrNotes.pop(); // aqui basicamente apaga o ultimo elemento, pois depois de transformando de string para array, fica as ultimas virgulas da string que antes era um array 
         }
         
     } 
@@ -171,7 +170,8 @@ window.addEventListener("load", function () {
             var enlistment =  document.querySelectorAll("#notes li"); // selecionando todos os elementos dentro das #notas que sejam li, ou seja a lista de notas
             for (var i = 0; i <enlistment.length; i ++) { // percorrendo o alistamento 
                 enlistment[i].addEventListener("click" , function(e){ // ao selecionar um indice deste alistamento ira adicionar o evento clicar e ira mostrar o id selecionado.
-                alert('O elemento clicado foi o ' + this.id);
+                let select = this.id
+                document.querySelector('#papermain').innerHTML = arrNotes[parseInt(select)]
                 })
             }
             
