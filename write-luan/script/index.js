@@ -4,16 +4,16 @@
 }botao pra testar algo novo
 */
 var arrNotes = new Array(); // um array para salvar as notas inserido fora do load pois se toda vez que carregar a pagina ira crialo vazio
-var transfornNotesString = new String('vazia'); // e necessario definir como string pois js interpreta como objeto na hora da conversao
+var transfornNotesString = new String('vazia'); // essa variavel foi feita apenas para salvar um array convertido em string
 window.addEventListener("load", function () {
-     /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
-        adicionar eventos em variáveis nulas, então insiro todo o código depois que a página recarregar, só ai são capturados os valores.
     
-        */
+    /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
+        adicionar eventos em variáveis nulas, então insiro todo o código depois que a página recarregar, só ai são capturados os valores.
+    */
     const boldBtn = document.querySelector('#btnBold');
-    const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada "botão" para alterar o texto
-    const italicBtn = document.querySelector("#btnItalic");         
-    const colorInput = document.querySelector("#inputColor");              // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var
+    const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada botao de edicao de texto, alguns sao inputs
+    const italicBtn = document.querySelector("#btnItalic");             // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var, pois os botoes serao sempre os mesmos, nao ira variar
+    const colorInput = document.querySelector("#inputColor");             
     const selectFont = document.querySelector("#selectFont");
     const fontTall = document.querySelector("#fontTall");
     const btnTopic = document.querySelector("#btnTopic");
@@ -26,7 +26,7 @@ window.addEventListener("load", function () {
     const btnSave = document.querySelector("#save");
     const btnDown = document.querySelector("#downPDF");
 
-    boldBtn.addEventListener('click' , ()=> {                                    
+    boldBtn.addEventListener('click' , ()=> {                                
         document.execCommand('bold');
     });
     underlineBtn.addEventListener('click' , ()=> {
@@ -35,10 +35,9 @@ window.addEventListener("load", function () {
     italicBtn.addEventListener('click', ()=>{
         document.execCommand('italic');
     });
-     /* adiciona a variável (que está com botao) o evento 'click' executando a função seguinte: esse documento executa o comando bold/italic/underline
-        ou seja o documento selecionado recebe o estilo citado  */
+     // adicionando o evento clicar aos botoes, fazendo executar o comando que transforma o texto em negrito/italico/sublinhado   
     colorInput.addEventListener('click', ()=>{
-        this.document.execCommand("foreColor",false, inputColor.value);
+        document.execCommand("foreColor",false, inputColor.value); // desta vez e um input, pois tem dados inseridos, que seriam as cores, insere a cor selecionada no input
     });
     selectFont.addEventListener('click' , ()=>{
         document.execCommand("fontName", false, selectFont.value);
@@ -49,50 +48,48 @@ window.addEventListener("load", function () {
     fontTall.addEventListener('click' , ()=> {
         document.execCommand("fontSize" , false , fontTall.value);
         /* o tamanho é limitado a 7 opções mas para versão inicial é suficiente, limitação do recurso fontSize tendo os tamanhos já padrão 1 a 7
-        comparei os valores em um outro editor de texto e deixei aproximadamente no HTML.      
+        comparei os valores em um outro editor de texto e deixei aproximadamente no HTML.      limitacao do execcomand
         */
     });
     btnTopic.addEventListener('click' , ()=> {
-        document.execCommand( "insertUnorderedList"); // cria uma lista não ordenada, por algum motivo o css padding=0 deixa esse evento impossibilitado
+        document.execCommand( "insertUnorderedList"); // cria uma lista não ordenada, por algum motivo o css padding=0   deixa esse evento impossibilitado !!!POR ISSO NAO DEVE SER INSERIDO NO css!!!
     });
     // depois atualizar essa tabela para que ela possa ser movida
 
     const exitT = document.createElement("p");
-    exitT.innerText = ".";  
+    exitT.innerText = "...";  
      // para poder sair dos elementos criados (gambearra)
 
-    btnTable.addEventListener('click' , () => { // criar um MODAL   para substituir o prompt depois
-        let linha = +prompt('Qual número de linhas?'); // obs importante o + na frente serve para transformar o que for inserido em int em vez de string 
-        let coluna= +prompt('Qual número de colunas?'); // envia um prompt igual o alert e é inserido o numero de linhas e colunas desejado
-        // substituir por um MODAL
+    btnTable.addEventListener('click' , () => { 
+        let linha = +prompt('Qual número de linhas?'); // Cria mensagem no pronpt (tipo um alert mas com um imput para inserir dados) do usuario perguntando quantas linhas serao inseridas, salvando na variavel linha 
+        let coluna= +prompt('Qual número de colunas?'); // - obs importante o + na frente serve para transformar o que for inserido em int em vez de string 
+        // substituir por um MODAL **
         if (isNaN(linha) || isNaN(coluna)) { //validando para que entre apenas numeros
-            window.alert("ta procurando o que? digita um numero ai"); 
+            window.alert("ta procurando o que? digita um numero ai");  // caso alguem tente injetar um script ou inserir um texto aleatorio.
         }
-        else { //se existir linha e coluna
+        else { //se as variaveis forem preenchidas corretamente, ou seja um numero definindo a quantidade de linhas e colunas
 
-            let t = document.createElement("table"); // cria na variavel t o elemento tabela, não funciona se não especificar onde vai ficar o elemento criado
-
-            t.border = "1";                         
+            let t = document.createElement("table"); // cria na variavel t o elemento tabela, NAO ESQUECER DE INSERIR O ELEMENTO DEPOIS.
+            t.border = "1";  // Colocando uma borda no elemento t ou seja na tabela                        
             t.style.borderCollapse = "collapse";
-            t.style.border = "1px solid blue";
+            t.style.border = "1px solid black";
             t.style.margin = "auto";
-                                                    /*verificar se é possível inserir trecho no css*/
-            for( let l=0; l<linha; l++) 
+            // verificar possibilidade de inserir trecho no css
+            for( let l=0; l<linha; l++)  // aqui ira criar as linhas... em quanto `l` menor que a quantidade diigitado pelo usuario (em linha), l adiciona mais um, ate ficar na quantidade que o usuario digitou  
             {
-                let tr = document.createElement("tr"); 
-                tr.style.border = "1px solid blue";
-                                                        // em quanto l menor que linha l repete, ou seja cria uma linha a cada loop 
-                for( let c=0; c<coluna; c++)
+                let tr = document.createElement("tr");  // cria o elemento tr que e a linha da tabela
+                tr.style.border = "1px solid blue"; // adiciona a borda para ficar visivel
+                for( let c=0; c<coluna; c++) // mesma logica para as colunas
                 {
                     let td   = document.createElement("td"); 
                     td.style.border = "1px solid blue";
-                    td.innerHTML = "_";
-                    tr.appendChild(td);                          //  mesma lógica
+                    td.innerHTML = "------"; // apenas para as linhas n ficarem mt pequenas e grudadas
+                    tr.appendChild(td); // aqui adiciona as linhas nas colunas
                 }
-                t.appendChild(tr);
+                t.appendChild(tr); // aqui insere a tabela nas linhas
             }
-            papermain.appendChild(t); // o elemento pai papermain recebe o elemento t como filho. ou seja a tabela.   
-            papermain.appendChild(exitT);
+            papermain.appendChild(t); // agora insere a tabela no papel principal
+            papermain.appendChild(exitT); // o pontinho pra fora apenas para poder clicar para sair
         }
     });
     btnText.addEventListener('click' , ()=> {
@@ -122,9 +119,11 @@ window.addEventListener("load", function () {
             }
             img.src = URL.createObjectURL(this.files[0]); 
             papermain.appendChild(img);
+            papermain.appendChild(exitT); // o pontinho pra fora apenas para poder clicar para sair
             // a logica foi focada em apenas encaminhar os arquvos nao foi pensado em tamanho ou responsividade
             // verificar responsividade depois *
         }
+        
     });
    audioInput.addEventListener('change', function(){
         if (this.files && this.files[0]) {
@@ -137,6 +136,7 @@ window.addEventListener("load", function () {
                 audio.src=freader.result;
             }
             papermain.appendChild(audio);
+            papermain.appendChild(exitT); // o pontinho pra fora apenas para poder clicar para sair
         }
    });
    videoInput.addEventListener('change' , function(){
@@ -150,6 +150,8 @@ window.addEventListener("load", function () {
             video.src=freader.result;
         }
         papermain.appendChild(video);
+        papermain.appendChild(exitT); // o pontinho pra fora apenas para poder clicar para sair
+
      } 
    }); 
 
