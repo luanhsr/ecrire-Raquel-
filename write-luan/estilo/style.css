@@ -34,12 +34,11 @@ input[type='file']
 {
     display: none
 }
-/*button {
+button {
    background-color: transparent;
    border-radius: 75%;
    border-color: transparent;
 }
-*/
 select{
     width: 15px;
     background-color: transparent;
@@ -114,4 +113,28 @@ select{
     color: red;
     border: 1px;
     background-color: white;
+}
+/* conteudos que nao existem no html, mas sao criados no javascript: 
+
+*/
+.quadrado {
+    height: 150px;
+    width: 150px;
+    border: 1px solid black;
+    background-color: white;
+}
+.circulo {
+    background-color: white;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    border: 1px solid black;
+}
+
+.triangulo {
+    width: 0;
+    height: 0;
+    border-left: 80px solid transparent;
+    border-right: 80px solid transparent;
+    border-bottom: 180px solid white;
 }

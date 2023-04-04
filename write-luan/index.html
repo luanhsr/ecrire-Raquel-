@@ -103,13 +103,21 @@
                 <button class="btnCreateTextBox" id="btnCreateTextBox">
                     <i class="fa-solid fa-border-top-left"></i>
                 </button>
-                <button class="btnFormula" id="btnFormula">
-                    <i class="fa-solid fa-shapes"></i>
-                </button> 
-                <label for="imageInput">
-                    <i class="fa-solid fa-file-image" ></i>
-                </label>
-                <input type="file" accept="image/*" id="imageInput" class="imageInput">   
+                <i class="fa-solid fa-shapes">
+                    <select class="btnFormula" id="btnFormula">
+                        <option value="null"></option>
+                        <option value="quadrado">quadrado</option>
+                        <option value="circulo">circulo</option>
+                        <option value="triangulo">triangulo</option>
+                    </selects>
+                </i>
+                    
+
+    
+                    <i class="fa-solid fa-file-image" >
+                        <input type="file" accept="image/*" id="imageInput" class="imageInput">   
+                    </i>
+
                 <label for="inputVideo">
                     <i class="fa-solid fa-file-video"></i>
                 </label>
