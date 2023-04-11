@@ -138,3 +138,6 @@ select{
     border-right: 80px solid transparent;
     border-bottom: 180px solid white;
 }
+.btnFormula option {
+    font-size: 100px;
+}

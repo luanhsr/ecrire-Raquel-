@@ -147,17 +147,20 @@ window.addEventListener("load", function () {
         } 
         return true;
     });
-    imgInput.addEventListener('change', function (){
-        if (this.files && this.files[0]) {
-            let img = document.createElement('img');
-            img.onload = () => {
-                URL.revokeObjectURL(img.src);  // 
+    imgInput.addEventListener('change', function (){ // adiciona ao input o evento change que ao selecionar o imput ira executar a funcao 
+        if (this.files && this.files[0]) { // aqui verifica se existe um arquivo selecionado no input e na change
+            let loadImg = this.files[0]; // atribuo esse arquivo a uma variavel
+            let readFile = new FileReader(); // para o navegador poder ler/interpretar o arquivo
+            readFile.onload = (loadFile) => {
+                let img64 = loadFile.target.result; // converte a imagem para base 64
+                let newImg = document.createElement('img'); // cria a imagem no documento html
+                newImg.src = img64; // recebe a imagem em formato 64
+                papermain.appendChild(newImg);
+                papermain.appendChild(exitT);
+
             }
-            img.src = URL.createObjectURL(this.files[0]); 
-            papermain.appendChild(img);
-            papermain.appendChild(exitT); // o pontinho pra fora apenas para poder clicar para sair
-            // a logica foi focada em apenas encaminhar os arquvos nao foi pensado em tamanho ou responsividade
-            // verificar responsividade depois *
+            readFile.readAsDataURL(loadImg);
+
         }
         
     });
