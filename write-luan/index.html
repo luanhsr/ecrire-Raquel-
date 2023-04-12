@@ -94,9 +94,15 @@
                     <i class="fa-solid fa-palette"></i>              
                 </label>
                 <input type="color" class="inputColor" id="inputColor">                        
-                <button class="btnTopic" id="btnTopic">
-                    <i class="fa-solid fa-list-ul"></i>
-                </button>
+                    <i class="fa-solid fa-list-ul">
+                        <select name="selectTypeList" class="inputTopic" id="inputTopic">
+                            <option value="null">...</option>
+                            <option value="123" class="roman"> 1. 2. 3.</option>
+                            <option value="underline" class="underline"> ●. ●. ●.</option>
+                            <option value="roman" class="roman">I. II. III.</option>
+                            <option value="alpha" class="alpha">a. b. c.</option>
+                        </select>
+                    </i>
                 <button class="btnTable" id="btnTable">
                     <i class="fa-solid fa-table"></i>
                 </button> 
@@ -105,7 +111,7 @@
                 </button>
                 <i class="fa-solid fa-shapes">
                     <select class="btnFormula" id="btnFormula">
-                        <option value="null"></option>
+                        <option value="null">...</option>
                         <option value="quadrado">□</option>
                         <option value="circulo">●</option>
                         <option value="triangulo">▲</option>

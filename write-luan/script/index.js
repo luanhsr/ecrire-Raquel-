@@ -16,7 +16,7 @@ window.addEventListener("load", function () {
     const colorInput = document.querySelector("#inputColor");             
     const selectFont = document.querySelector("#selectFont");
     const fontTall = document.querySelector("#fontTall");
-    const topicBtn = document.querySelector("#btnTopic");
+    const topicInput = document.querySelector("#inputTopic");
     const tableBtn = document.querySelector("#btnTable");
     const textbtn = document.querySelector("#btnCreateTextBox");
     const formulaBtn = document.querySelector("#btnFormula");
@@ -70,8 +70,41 @@ window.addEventListener("load", function () {
         comparei os valores em um outro editor de texto e deixei aproximadamente no HTML.      limitacao do execcomand
         */
     });
-    topicBtn.addEventListener('click' , ()=> {
-        document.execCommand( "insertUnorderedList"); // cria uma lista não ordenada, por algum motivo o css padding=0   deixa esse evento impossibilitado !!!POR ISSO NAO DEVE SER INSERIDO NO css!!!
+    topicInput.addEventListener('click' , ()=> {
+      //  document.execCommand( "insertUnorderedList"); // cria uma lista não ordenada, por algum motivo o css padding=0   deixa esse evento impossibilitado !!!POR ISSO NAO DEVE SER INSERIDO NO css!!!
+    
+        
+        switch (topicInput.value) {
+            case '123':
+                document.execCommand("insertOrderedList");
+                topicInput.value = "null"
+
+            break;
+            case 'underline':
+                document.execCommand("insertUnorderedList");
+                topicInput.value = "null"
+            break;
+            case 'roman':
+                document.execCommand("insertOrderedList");
+                topicInput.value="null"
+                let nodeListR = document.querySelectorAll('li');
+                for (let i = 0; i < nodeListR.length; i++) {
+                    nodeListR[i].style.listStyleType = "upper-roman";
+                }
+            break;
+            case 'alpha':
+                document.execCommand('insertOrderedList');
+                let nodeListA = document.querySelectorAll('li');
+                for (let i = 0; i < nodeListA.length; i++) {
+                    nodeListA[i].style.listStyleType = " lower-alpha";
+                }
+                topicInput.value="null"
+                
+            break;
+        }
+
+        return true;
+
     });
     // depois atualizar essa tabela para que ela possa ser movida
 
@@ -161,6 +194,8 @@ window.addEventListener("load", function () {
             }
             readFile.readAsDataURL(loadImg);
 
+        } else {
+            alert('selecione um arquivo de imagem')
         }
         
     });
