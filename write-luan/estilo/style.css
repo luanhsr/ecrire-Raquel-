@@ -141,3 +141,35 @@ select{
 .btnFormula option {
     font-size: 100px;
 }
+select.btnCH > #y{
+    background-color: yellow;
+    cursor: pointer;
+}
+select.btnCH > #r{
+    background-color: red;
+}
+
+select.btnCH > #gn{
+    background-color: green;
+}
+
+select.btnCH > #w{
+    background-color: white;
+}
+select.btnCH > #bk{
+    background-color: black;
+}
+select.btnCH > #gy{
+    background-color: gray;
+}
+select.btnCH > #be{
+    background-color: blue;
+}
+select.btnCH > #t{
+    background-color: transparent;
+    align-items: center;
+    color: red;
+}
+
+
+

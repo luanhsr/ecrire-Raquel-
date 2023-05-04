@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <title> écrire, Raquel </title>
         <link rel="stylesheet" href="estilo/style.css">
-        <script src="script/index.js"> </script>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kdam+Thmor+Pro">
@@ -24,6 +24,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Blaka">
     </head>
     <body>
+        <script src="script/index.js"> </script>
         <header class="head">  
             <div class="navFile">
                 <nav>
@@ -54,6 +55,28 @@
                 <button class="btnItalic" id="btnItalic">
                     <i class="fa-solid fa-italic"></i>
                 </button>
+                <i class="fa-solid fa-highlighter">
+                    <select class="btnCH" id="btnCH"> <!-- seletor de selecionar cor de Highlighter MARCADOR-->
+                        <option value="transparent"  id="t">
+                            ☓
+                        </option>
+                        <option value="yellow" id="y">
+                        </option>
+                        <option value="red" id="r">
+                        </option>
+                        <option value="green"  id="gn">
+                        </option>
+                        <option value="white"  id="w">  <!--cada opcao com sua devida cor -->
+                        </option>
+                        <option value="blue"  id="be">
+                        </option>
+                        <option value="gray"  id="gy">
+                        </option>
+                        <option value="black"  id="bk">
+                        </option>
+                    
+                    </select>
+                </i>
                 <i class="fa-solid fa-font" id="bug1">
                     <select id="selectFont">
                         <option value="Arial">Arial</option>
@@ -139,10 +162,13 @@
             </div>  <!--table icon-->
         </section> <!--editor-->
         <section class="papel">
-          <!--
-                <button onclick="teste1()">Click me</button>
-                um botao de teste pra quando quiser testar algo novo.
-          -->  
+            <!--
+                <button id="teste1">Click me</button>
+                botao de testes
+            -->
+                
+       
+     
             <div id="papermain" class="papermain" placeholder="digite algo" contenteditable="true" spellcheck="false"></div>
         </section> <!--papel-->
     </body>

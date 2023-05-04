@@ -1,18 +1,18 @@
-/*function teste1 () {
-    console.log (arrNotes);
-    console.log (` isso e uma string: ${localStorage.allNotes} `);
-}botao pra testar algo novo
-*/
+
+
 var arrNotes = new Array(); // um array para salvar as notas inserido fora do load pois se toda vez que carregar a pagina ira crialo vazio
 var transfornNotesString = new String('vazia'); // essa variavel foi feita apenas para salvar um array convertido em string
 window.addEventListener("load", function () {
-    
+
     /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
         adicionar eventos em variáveis nulas, então insiro todo o código depois que a página recarregar, só ai são capturados os valores.
     */
-    const boldBtn = document.querySelector('#btnBold');
+    
+
+    const boldBtn = document.querySelector("#btnBold");
     const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada botao de edicao de texto, alguns sao inputs
     const italicBtn = document.querySelector("#btnItalic");             // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var, pois os botoes serao sempre os mesmos, nao ira variar
+    const colorHBtn = document.querySelector("#btnCH");
     const colorInput = document.querySelector("#inputColor");             
     const selectFont = document.querySelector("#selectFont");
     const fontTall = document.querySelector("#fontTall");
@@ -25,6 +25,14 @@ window.addEventListener("load", function () {
     const videoInput = document.querySelector("#inputVideo");
     const saveBtn = document.querySelector("#save");
     const downBtn = document.querySelector("#downPDF");
+
+    
+/*    
+    const teste1 = document.querySelector("#teste1");
+    teste1.addEventListener('click' , ()=> {
+        console.log ('clicado')
+    }) // botao pra testar algo novo
+*/
 
     function fSave () {
         let nameNote = prompt('qual nome da nota?');  
@@ -44,7 +52,7 @@ window.addEventListener("load", function () {
         transfornNotesString = saveArrNotes.toString();  // transformando todas as notas salvas ou seja todo o array em uma string, para que possa ser salvo no localStorage, visto que so salva string
         localStorage.allNotes = transfornNotesString; // agora sim salvo no cache todas as notas salvas separadas por §--byLuanHenrique--§
     }
-
+    
     boldBtn.addEventListener('click' , ()=> {                                
         document.execCommand('bold');
     });
@@ -53,6 +61,43 @@ window.addEventListener("load", function () {
     });
     italicBtn.addEventListener('click', ()=>{
         document.execCommand('italic');
+    });
+    const hiliteCBtn = document.querySelector("#btnCH"); // atribui o seletor das cores
+    function selectColorH (val){ // uma funcao para selecionar a cor, recebe como parametro um valor
+        document.execCommand('hilitecolor', true, val); // executa a funcao que muda a cor do texto, ativando o css, inserindo no valor inserido nos option 
+        hiliteCBtn.value = "null"; // depois deixa o valor selecionado nulo, para que nao aja dupla selecao, ou algum erro.
+    }
+    hiliteCBtn.addEventListener('click' , ()=> {
+        
+        switch (hiliteCBtn.value) {  // verifica a expressao que esta no valor da query selecionada.
+            case 'transparent': // caso transparente 
+                selectColorH(hiliteCBtn.value); // chama a funcao, lembrando o parametro val, e preenchido com o valor que esta na variavel selecionada
+                // esse seria para remover qualquer marcador
+            break;
+            case 'yellow':
+                selectColorH(hiliteCBtn.value); 
+            break;
+            case 'red':
+                selectColorH(hiliteCBtn.value);
+            break;
+            case 'green':
+                selectColorH(hiliteCBtn.value);
+            break;
+            case 'white':
+                selectColorH(hiliteCBtn.value);
+            break;      
+            case 'blue':
+                selectColorH(hiliteCBtn.value);
+            break;      
+            case 'gray':
+                selectColorH(hiliteCBtn.value);
+            break;
+            case 'black':
+                selectColorH(hiliteCBtn.value);
+            break;                 
+        } 
+        return true;
+        // o restante insere sua respectiva cor.
     });
      // adicionando o evento clicar aos botoes, fazendo executar o comando que transforma o texto em negrito/italico/sublinhado   
     colorInput.addEventListener('click', ()=>{
