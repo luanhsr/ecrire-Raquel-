@@ -112,11 +112,29 @@
                         <!-- por em quanto é limitado a 7 opções pois o parametro só suporta 7 opções irei alterar isso futuramente-->
                     </select> 
                 </i>
-                <label for="btnColor">
-                <label for="inputColor">          
+                <label for="btnColor"> </label>
+                <label for="inputColor"></label>   
                     <i class="fa-solid fa-palette"></i>              
                 </label>
-                <input type="color" class="inputColor" id="inputColor">                        
+                <input type="color" class="inputColor" id="inputColor"> 
+
+                <!-- botao para justificar texto -->
+
+                <i class="fa-solid fa-align-justify">
+                    <!-- desta vez, cada valor esta com o nome exato da propriedade execComand assim podemos reaproveitar esse valor e ja inserir o comando-->
+                    <select name="selectTypeList" id="selectJustify">
+                        <option value="justifyCenter"> 
+                            center
+                        </option>
+                        <option value="justifyLeft">
+                            Left
+                        </option>
+                        <option value="justifyRight">
+                            Right
+                        </option>
+                    </select>
+                </i>
+
                     <i class="fa-solid fa-list-ul">
                         <select name="selectTypeList" class="inputTopic" id="inputTopic">
                             <option value="null">...</option>

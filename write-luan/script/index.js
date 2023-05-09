@@ -6,76 +6,53 @@ window.addEventListener("load", function () {
 
     /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
         adicionar eventos em variáveis nulas, então insiro todo o código depois que a página recarregar, só ai são capturados os valores.
-    */
-    
-
-    const boldBtn = document.querySelector("#btnBold");
-    const underlineBtn = document.querySelector("#btnUnderline");       // selecionando cada botao de edicao de texto, alguns sao inputs
-    const italicBtn = document.querySelector("#btnItalic");             // como os valores inseridos serão sempre elementos do HTML, optei por const ao invés de var, pois os botoes serao sempre os mesmos, nao ira variar
-    const colorHBtn = document.querySelector("#btnCH");
-    const colorInput = document.querySelector("#inputColor");             
+    */             
     const selectFont = document.querySelector("#selectFont");
     const fontTall = document.querySelector("#fontTall");
-    const topicInput = document.querySelector("#inputTopic");
     const tableBtn = document.querySelector("#btnTable");
     const textbtn = document.querySelector("#btnCreateTextBox");
     const formulaBtn = document.querySelector("#btnFormula");
     const imgInput = document.querySelector("#imageInput");
     const audioInput = document.querySelector("#inputAudio");
     const videoInput = document.querySelector("#inputVideo");
-    const saveBtn = document.querySelector("#save");
+    const saveAsBtn = document.querySelector("#save");
     const downBtn = document.querySelector("#downPDF");
 
-    
-/*    
-    const teste1 = document.querySelector("#teste1");
-    teste1.addEventListener('click' , ()=> {
-        console.log ('clicado')
-    }) // botao pra testar algo novo
-*/
-
-    function fSave () {
-        let nameNote = prompt('qual nome da nota?');  
-        notes = document.getElementById('notes'); // pegando a lista (nota)
-        let li = document.createElement('li');
-        li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
-        li.setAttribute('id' ,  n+ 'selectNote' ); // inserindo o atributo para posteriormente selecionar a nota desejada
-        n++
-        localStorage.n = n
-        notes.appendChild(li) // inserindo li na lista de mptas
-        localStorage.info = document.getElementById('papermain').innerHTML; // salvando a informacao que o usuario digitou no cache .info
-        localStorage.liNotes = document.getElementById('notes').innerHTML; // inserindo as notas laterais salvas tambem no local storage
-        arrNotes.push(localStorage.info); // insere a nota salva no cache tambem dentro de um array, onde estarao todas as notas, pois o localstorage nao salva arrays apenas string
-        arrNotes.push('§--byLuanHenrique--§'); // isso e uma separa cada nota de um array, durante a conversao sera excluido
-
-        var saveArrNotes = arrNotes; // um array recebendo todas as notas salvas
-        transfornNotesString = saveArrNotes.toString();  // transformando todas as notas salvas ou seja todo o array em uma string, para que possa ser salvo no localStorage, visto que so salva string
-        localStorage.allNotes = transfornNotesString; // agora sim salvo no cache todas as notas salvas separadas por §--byLuanHenrique--§
-    }
-    
-    boldBtn.addEventListener('click' , ()=> {                                
-        document.execCommand('bold');
+    // --- INICIO negrito/italico/sublinhado ---- 
+    const boldBtn = document.querySelector("#btnBold"); // cada const e atribuida a um botao do html
+    boldBtn.addEventListener('click' , ()=> { // depois e adicionado o evento clicar                  
+        document.execCommand('bold'); // executa no documento o efeito negrito no texto selecionado
     });
+
+    const underlineBtn = document.querySelector("#btnUnderline");
     underlineBtn.addEventListener('click' , ()=> {
         document.execCommand('underline');
     });
+
+    const italicBtn = document.querySelector("#btnItalic");
     italicBtn.addEventListener('click', ()=>{
         document.execCommand('italic');
     });
-    const hiliteCBtn = document.querySelector("#btnCH"); // atribui o seletor das cores
-    function selectColorH (val){ // uma funcao para selecionar a cor, recebe como parametro um valor
-        document.execCommand('hilitecolor', true, val); // executa a funcao que muda a cor do texto, ativando o css, inserindo no valor inserido nos option 
+    // mesma logica que o primeiro.
+    // --- FIM negrito/italico/sublinhado ---- 
+
+    // --- INICIO marcar texto ---
+    function selectColorH (val){ // uma funcao para selecionar a cor, recebe como parametro um valor.
+        document.execCommand('hilitecolor', true, val); // executa a funcao que muda a cor do fundo do texto, ativando o css, a cor sera atribuida em val.
         hiliteCBtn.value = "null"; // depois deixa o valor selecionado nulo, para que nao aja dupla selecao, ou algum erro.
     }
-    hiliteCBtn.addEventListener('click' , ()=> {
+
+    const hiliteCBtn = document.querySelector("#btnCH"); // uma const e atribuida o seletor das cores.
+
+    hiliteCBtn.addEventListener('click' , ()=> { // adiciona o evento clicar
         
-        switch (hiliteCBtn.value) {  // verifica a expressao que esta no valor da query selecionada.
+        switch (hiliteCBtn.value) {  // verifica a expressao que esta no valor da query selecionada ou seja o value da option do HTML
             case 'transparent': // caso transparente 
-                selectColorH(hiliteCBtn.value); // chama a funcao, lembrando o parametro val, e preenchido com o valor que esta na variavel selecionada
-                // esse seria para remover qualquer marcador
+                selectColorH(hiliteCBtn.value); // chama a funcao, o parametro val recebe o valor que esta na const, de acordo com a option selecionada
+                // esse seria para remover qualquer marcador, deixando o fundo transparente
             break;
-            case 'yellow':
-                selectColorH(hiliteCBtn.value); 
+            case 'yellow': // caso a expressao selecionada seja amarelo
+                selectColorH(hiliteCBtn.value); // a funcao recebe o val amarelo, funcao essa acima que pinta a cor de fundo.
             break;
             case 'red':
                 selectColorH(hiliteCBtn.value);
@@ -97,9 +74,11 @@ window.addEventListener("load", function () {
             break;                 
         } 
         return true;
-        // o restante insere sua respectiva cor.
+        // o restante insere sua respectiva cor, o return true evita erros.
     });
-     // adicionando o evento clicar aos botoes, fazendo executar o comando que transforma o texto em negrito/italico/sublinhado   
+    // --- FIM marcar texto --- 
+
+    const colorInput = document.querySelector("#inputColor"); 
     colorInput.addEventListener('click', ()=>{
         document.execCommand("foreColor",false, inputColor.value); // desta vez e um input, pois tem dados inseridos, que seriam as cores, insere a cor selecionada no input
     });
@@ -115,6 +94,28 @@ window.addEventListener("load", function () {
         comparei os valores em um outro editor de texto e deixei aproximadamente no HTML.      limitacao do execcomand
         */
     });
+    const selectJBtn = document.querySelector("#selectJustify"); // a constante pega o select 
+    selectJBtn.addEventListener('click' , ()=> { // ao clicar em um deles e inserido o evento...
+        switch (selectJBtn.value) { // caso o valor selecionado seja centro, ira executar o comando justifyCenter 
+            case 'justifyCenter':
+                document.execCommand(selectJBtn.value, false, "");
+                selectJBtn.value = "null";
+            break;
+            case 'justifyLeft':
+                document.execCommand(selectJBtn.value, false, "");
+                selectJBtn.value = "null";
+            break;
+            case 'justifyRight':
+                document.execCommand(selectJBtn.value, false, "");
+                selectJBtn.value = "null";
+            break;
+            // lembrando que so funciona pois cada value no HTML esta exatamente como deve ser no execComand
+        }
+        return true;
+
+    });
+
+    const topicInput = document.querySelector("#inputTopic");
     topicInput.addEventListener('click' , ()=> {
       //  document.execCommand( "insertUnorderedList"); // cria uma lista não ordenada, por algum motivo o css padding=0   deixa esse evento impossibilitado !!!POR ISSO NAO DEVE SER INSERIDO NO css!!!
     
@@ -235,9 +236,11 @@ window.addEventListener("load", function () {
                 newImg.src = img64; // recebe a imagem em formato 64
                 papermain.appendChild(newImg);
                 papermain.appendChild(exitT);
+                alert(img64);
 
             }
             readFile.readAsDataURL(loadImg);
+            alert(img64);
 
         } else {
             alert('selecione um arquivo de imagem')
@@ -274,16 +277,42 @@ window.addEventListener("load", function () {
      } 
    }); 
     
-    if (localStorage.info != null) {
-            document.querySelector("#papermain").innerHTML =  localStorage.info;
+    if (localStorage.currentNot != null) {
+            document.querySelector("#papermain").innerHTML =  localStorage.currentNot;
+    }
+    /*
+    function fSave () {
+        let nameNote = prompt('qual nome da nota?');  
+        notes = document.getElementById('notes'); // pegando a lista (nota)
+        let li = document.createElement('li');
+        li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
+        li.setAttribute('id' ,  n+ 'selectNote' ); // inserindo o atributo para posteriormente selecionar a nota desejada
+        n++
+        localStorage.n = n
+        notes.appendChild(li) // inserindo li na lista de mptas
+        localStorage.info = document.getElementById('papermain').innerHTML; // salvando a informacao que o usuario digitou no cache .info
+        localStorage.liNotes = document.getElementById('notes').innerHTML; // inserindo as notas laterais salvas tambem no local storage
+        arrNotes.push(localStorage.info); // insere a nota salva no cache tambem dentro de um array, onde estarao todas as notas, pois o localstorage nao salva arrays apenas string
+        arrNotes.push('§--byLuanHenrique--§'); // isso e uma separa cada nota de um array, durante a conversao sera excluido
+
+        var saveArrNotes = arrNotes; // um array recebendo todas as notas salvas
+        transfornNotesString = saveArrNotes.toString();  // transformando todas as notas salvas ou seja todo o array em uma string, para que possa ser salvo no localStorage, visto que so salva string
+        localStorage.allNotes = transfornNotesString; // agora sim salvo no cache todas as notas salvas separadas por §--byLuanHenrique--§
+    }
+    */
+    function saveCurrentNot () {
+        localStorage.currentNot = document.getElementById('papermain').innerHTML;
     }
 
-    saveBtn.addEventListener('click' , () =>{
+    document.addEventListener ('keypress', (event) => {
+        saveCurrentNot();
+    });
+      
+    saveAsBtn.addEventListener('click' , () =>{
  
-        localStorage.info = document.getElementById('papermain').innerHTML;
+        saveCurrentNot();
     
     });
-   
    downBtn.addEventListener('click' , () => {
         var doc = new jsPDF();
         doc.fromHTML(document.getElementById("papermain"), // page element which you want to print as PDF
@@ -296,4 +325,6 @@ window.addEventListener("load", function () {
             doc.save("documento basico"); // save file name as HTML2PDF.pdf
         });
    });
+
+
 });
