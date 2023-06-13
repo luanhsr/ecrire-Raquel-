@@ -1,7 +1,3 @@
-
-
-var arrNotes = new Array(); // um array para salvar as notas inserido fora do load pois se toda vez que carregar a pagina ira crialo vazio
-var transfornNotesString = new String('vazia'); // essa variavel foi feita apenas para salvar um array convertido em string
 window.addEventListener("load", function () {
 
     /* por algum motivo meu script carrega antes da página então não consegue pegar todos os valores a tempo, logo todos são dados como nulos, e não é possível
@@ -17,6 +13,7 @@ window.addEventListener("load", function () {
     const videoInput = document.querySelector("#inputVideo");
     const saveAsBtn = document.querySelector("#save");
     const downBtn = document.querySelector("#downPDF");
+    var papermain = document.getElementById("#papermain")
 
     // --- INICIO negrito/italico/sublinhado ---- 
     const boldBtn = document.querySelector("#btnBold"); // cada const e atribuida a um botao do html
@@ -36,7 +33,7 @@ window.addEventListener("load", function () {
     // mesma logica que o primeiro.
     // --- FIM negrito/italico/sublinhado ---- 
 
-    // --- INICIO marcar texto ---
+    // -------------------------------------------------- INICIO marcar texto --------------------------------------------------
     function selectColorH (val){ // uma funcao para selecionar a cor, recebe como parametro um valor.
         document.execCommand('hilitecolor', true, val); // executa a funcao que muda a cor do fundo do texto, ativando o css, a cor sera atribuida em val.
         hiliteCBtn.value = "null"; // depois deixa o valor selecionado nulo, para que nao aja dupla selecao, ou algum erro.
@@ -76,24 +73,51 @@ window.addEventListener("load", function () {
         return true;
         // o restante insere sua respectiva cor, o return true evita erros.
     });
-    // --- FIM marcar texto --- 
+    // -------------------------------------------------- FIM marcar texto -------------------------------------------------- 
 
-    const colorInput = document.querySelector("#inputColor"); 
-    colorInput.addEventListener('click', ()=>{
-        document.execCommand("foreColor",false, inputColor.value); // desta vez e um input, pois tem dados inseridos, que seriam as cores, insere a cor selecionada no input
-    });
     selectFont.addEventListener('click' , ()=>{
         document.execCommand("fontName", false, selectFont.value);
     });
      /* usando o mesmo recurso nativo, execCommand, fore color é deixado como falso (padrão) até ser selecionado o valor que esta no input color, assim alterando
      a fonte, a mesma lógica se aplica ao fontName que altera a font do texto selecionado a partir da opção selecionada no html, algumas fontes são buscadas na api
      do google fonts por URL então não irá funcionar a menos que esteja conectado a internet  */
-    fontTall.addEventListener('click' , ()=> {
+    
+     fontTall.addEventListener('click' , ()=> { // TAMANHO DA FONTE
         document.execCommand("fontSize" , false , fontTall.value);
         /* o tamanho é limitado a 7 opções mas para versão inicial é suficiente, limitação do recurso fontSize tendo os tamanhos já padrão 1 a 7
         comparei os valores em um outro editor de texto e deixei aproximadamente no HTML.      limitacao do execcomand
         */
     });
+    const selectColorBtn = document.querySelector("#btnCollorSelect");  // pega o botao do documento
+       
+
+    let grid = document.querySelectorAll('.grid-boxes-colors div'); // pega todoas as divs da grade de cores.
+   
+    selectColorBtn.addEventListener('click', ()=>{ 
+        let boxSelectColor = document.querySelector('#box-select-color'); // ao clicar no botao de cores, pega o elemento caixa de cores no documento 
+        if (boxSelectColor.style.visibility == "hidden") { 
+            boxSelectColor.style.visibility = "visible";
+        }  else if (boxSelectColor.style.visibility == "visible") {
+            boxSelectColor.style.visibility = "hidden";
+        } // se estiver invisivel, a grade de cores aparece apos clicar, se estiver visivel, ela desaparece apos clicar novamente.
+          // lembrando que a grade de cores faz parte do botao, so por isso funciona esconder ao selecionar qualquer coisa da grade. 
+        
+    });
+    for (let i = 0; i < grid.length; i++) { // percorre todos os items da grade de cores.
+        grid[i].addEventListener('click', function(e) { // adiciona um evento click ao elemento clicado, ou seja a caixa de cor clicada
+            let value = grid[i].dataset.value; // uma variavel (value) para receber o dataset.value da div clicada, ou seja, a cor que eu ja defini com um atributo criado por mim no documento HTML
+            document.execCommand('foreColor', false, value); // executa o comando fore color no texto selecionado
+        });
+    }
+    var colorPallet = document.getElementById('pallete-input');
+    colorPallet.addEventListener('change' , () => {
+        let value = colorPallet.value;
+        document.execCommand('foreColor', false, value); // pega os valores na paleta e executa o comando que deixa o estilo da cor selecionada
+        document.getElementById('box-color-input').style.backgroundColor = value;
+        document.getElementById('box-color-input').style.color = value;
+    });
+
+
     const selectJBtn = document.querySelector("#selectJustify"); // a constante pega o select 
     selectJBtn.addEventListener('click' , ()=> { // ao clicar em um deles e inserido o evento...
         switch (selectJBtn.value) { // caso o valor selecionado seja centro, ira executar o comando justifyCenter 
@@ -280,26 +304,6 @@ window.addEventListener("load", function () {
     if (localStorage.currentNot != null) {
             document.querySelector("#papermain").innerHTML =  localStorage.currentNot;
     }
-    /*
-    function fSave () {
-        let nameNote = prompt('qual nome da nota?');  
-        notes = document.getElementById('notes'); // pegando a lista (nota)
-        let li = document.createElement('li');
-        li.innerHTML = nameNote; // fazendo com que a nota tenha o nome inserido no promppt
-        li.setAttribute('id' ,  n+ 'selectNote' ); // inserindo o atributo para posteriormente selecionar a nota desejada
-        n++
-        localStorage.n = n
-        notes.appendChild(li) // inserindo li na lista de mptas
-        localStorage.info = document.getElementById('papermain').innerHTML; // salvando a informacao que o usuario digitou no cache .info
-        localStorage.liNotes = document.getElementById('notes').innerHTML; // inserindo as notas laterais salvas tambem no local storage
-        arrNotes.push(localStorage.info); // insere a nota salva no cache tambem dentro de um array, onde estarao todas as notas, pois o localstorage nao salva arrays apenas string
-        arrNotes.push('§--byLuanHenrique--§'); // isso e uma separa cada nota de um array, durante a conversao sera excluido
-
-        var saveArrNotes = arrNotes; // um array recebendo todas as notas salvas
-        transfornNotesString = saveArrNotes.toString();  // transformando todas as notas salvas ou seja todo o array em uma string, para que possa ser salvo no localStorage, visto que so salva string
-        localStorage.allNotes = transfornNotesString; // agora sim salvo no cache todas as notas salvas separadas por §--byLuanHenrique--§
-    }
-    */
     function saveCurrentNot () {
         localStorage.currentNot = document.getElementById('papermain').innerHTML;
     }

@@ -112,11 +112,48 @@
                         <!-- por em quanto é limitado a 7 opções pois o parametro só suporta 7 opções irei alterar isso futuramente-->
                     </select> 
                 </i>
-                <label for="btnColor"> </label>
-                <label for="inputColor"></label>   
-                    <i class="fa-solid fa-palette"></i>              
-                </label>
-                <input type="color" class="inputColor" id="inputColor"> 
+                 <!-- !!!! INICIO !!!! ----------------   SELECIONAR COR -------------------------------------------------!!!! INICIO !!!! -->
+                <button class="btnCollorSelect" id="btnCollorSelect"> <!--inicio botao de escolher cor-->
+                    <i class="fa-solid fa-a" id="collorSelected" > 
+                        <i class="fa-solid fa-brush"></i>
+                    </i>    
+                    <!-- um icone de texto-->
+                    
+                    <div class="box-select-color" id="box-select-color" style="visibility:hidden;">  <!-- uma classe para guardar todas as cores, inclusive a paleta, para que pertencam a mesma coisa que seria alterar cor -->
+                        <div class="grid-boxes-colors"> <!-- uma classe com a "grade" criada, para controlar cada quadradinho -->
+                            <div id="box-color-black" data-value="black">*</div>
+                            <div id="box-color-gray"  data-value="gray">*</div> 
+                            <div id="box-color-white" data-value="white">*</div>
+                            <div id="box-color-red" data-value="red">*</div>
+                            <div id="box-color-dark-red"  data-value="dark-red">*</div>   <!-- as cores com seus respectivos nomes e valores nos quais serao utilizados para aplicar a cor -->
+                            <div id="box-color-cyan"  data-value="cyan"> *</div>
+                            <div id="box-color-blue" data-value="blue">*</div>
+                            <div id="box-color-dark-blue" data-value="dark-blue">*</div>
+                            <div id="box-color-cornflowerblue" data-value="cornflowerblue">*</div>
+                            <div id="box-color-yellow" data-value="yellow">*</div>
+                            <div id="box-color-firebrick" data-value="firebrick">*</div>
+                            <div id="box-color-orange" data-value="orange">*</div>
+                            <div id="box-color-dark-orange" data-value="dark-orange">*</div>
+                            <div id="box-color-green" data-value="green">*</div>
+                            <div id="box-color-dark-green" data-value="dark-green">*</div> 
+                            <div id="box-color-violet" data-value="violet">*</div>
+                            <div id="box-color-dark-violet" data-value="dark-violet">*</div>
+                            <div id="box-color-deeppink" data-value="deeppink">*</div>
+                            <div id="box-color-pink" data-value="pink">*</div>
+                            <div id="box-color-brown" data-value="brown">*</div>
+                            <label for="pallete-input"></label>  <!-- esse label faz com que a tag dentro dela, se comporte como outra tag citada no for, no caso o input de cores-->
+                            <label for="pallete-input">
+                                <i class="fa-solid fa-palette"></i>  <!--o icone nao e um input mas se comportara como um gracas ao label for -->
+                            </label>
+                            <input type="color" name="pallete-input" id="pallete-input" style="visibility: hidden;" >  
+                            <div id="box-color-input" data-value="">/</div> <!-- um input de cores, no qual ira ficar invisivel, pois nao tem uma estetica tao agradavel -->
+
+                        </div>       
+                </div>
+                </button>
+                <!-- !!!! FINAL !!!! ----------------   SELECIONAR COR -------------------------------------------------!!!! FINAL !!!! -->
+
+ 
 
                 <!-- botao para justificar texto -->
 
@@ -171,14 +208,18 @@
                     <i class="fa-solid fa-file-audio"></i>
                 </label>
                 <input type="file" accept="audio/*" class="inputAudio" id="inputAudio"> 
+               
                 <button id="save" class="save">
-                    <i class="fa-solid fa-floppy-disk"></i>
+                    <i class="fa-solid fa-floppy-disk"> </i>
                 </button>
                 <button id="downPDF" class="downPDF">
                     <i class="fa-solid fa-file-arrow-down"></i>
                 </button>
+
             </div>  <!--table icon-->
+
         </section> <!--editor-->
+
         <section class="papel">
             <!--
                 <button id="teste1">Click me</button>

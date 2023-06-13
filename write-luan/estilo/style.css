@@ -3,14 +3,14 @@
     margin: 0;  
 }
 :root {
-    --collorPrimary: #4C0033;
-    --collorSecundary: #462DFC;
+    --collorPrimary: #7209b7;
+    --collorSecundary: #3a0ca3;
     --collorSelect: #330157;
 }
 .apresentacao{
    text-align: center;
-   margin: 0;
-   padding: 5;
+   margin: 0px;
+   padding: 5px;
 }
 .logoler{
     border-style:groove;
@@ -50,11 +50,12 @@ select{
     font-size: 25px;
     color: black;
     background-color: var(--collorSecundary);
-    width: 50px;
+    width: 60px;
     text-align: center;
-    border-radius: 30px;
-    margin: 1px;
+    border-radius: 10px;
+    margin: 1px 1px 1px 1px;
     transition: all 0.5s;  
+    padding: 1px;
 }
 .tableicon i:hover , .tableicon i:hover:active {
     -webkit-transform: scale(1.5);
@@ -63,8 +64,7 @@ select{
 .papermain {
     width: 100%;
     margin: auto;
-    height: 100%;
-    background-color: papayawhip;   
+    background-color: rgb(252, 218, 164);   
     padding: auto;
     bottom: 0;
     min-height: 100vmax;   
@@ -81,7 +81,7 @@ select{
     background-color: var(--collorPrimary);
     list-style: none;
     width: 50px;
-    float: center;
+    float: center; 
 
 }
 .navFile ul li ul li {
@@ -170,3 +170,106 @@ select.btnCH > #t{
     align-items: center;
     color: red;
 }
+/* ------------------------------------------------------------------------INICIO GRADE DE CORES ------------------------------------------------------------------------------------------ */
+.btnCollorSelect i > i {
+    width: 2px;
+}
+.grid-boxes-colors {
+    background-color: var(--collorPrimary); /* deixa a caixa com o fundo da cor primaria */
+    width: 200px; /* limita o tamanho da caixa em 200px *detalhe importante* */
+    display: flex; /* permite que os itens dentro fiquem flexiveis par movelos */
+    flex-wrap: wrap; /* coloca o flexivel em wrap ou seja, deixa os icones um do lado do outro e assim que acabar o limite de largura dessa para baixo*/
+    padding: 1px; /* para que nao fique tudo encostado */
+    position: absolute; /* posicao absoluta para ignorar e passar por cima de todos os icones e nao move-los independente de onde estiver */
+    border: 2px solid var(--collorSecundary); /* deixa a borda em 2px e pinta para separar um item do outro */
+}
+.grid-boxes-colors > div { /* aqui mexe especificamente nos itens da grade que sao div, ou seja apenas os quadradinhos de cores */
+    border: 2px solid var(--collorSelect); /* fazendo uma borda para separa-los bem*/
+    width: 10%; /* limitando o espaco de cada quadradinho a 10% de 200px para que fique responsivo*/
+}
+/* a baixo cada quadradinho recebe sua devida cor */
+#box-color-black {
+    background-color: black;
+    color: black;
+}
+#box-color-gray  {
+    background-color: gray;
+    color: gray;
+}
+#box-color-white {
+    background-color: white;
+    color: white;
+}
+#box-color-red{
+    background-color: red;
+    color: red;
+}
+#box-color-dark-red  {
+    background-color: darkred;
+    color: darkred;
+}
+#box-color-blue {
+    background-color: blue;
+    color: blue;
+}
+#box-color-dark-blue  {
+    background-color: darkblue ; 
+    color: darkblue;
+}
+#box-color-cyan {
+    background-color: cyan;
+    color: cyan;
+}
+#box-color-yellow {
+    background-color: yellow;
+    color: yellow;
+}
+#box-color-firebrick  {
+    background-color:firebrick;
+    color: firebrick;
+}
+#box-color-deeppink  {
+    background-color:deeppink;
+    color: deeppink;
+}
+#box-color-orange  {
+    background-color:orangered ;
+    color: orangered;
+}
+#box-color-dark-orange  {
+    background-color: darkorange;
+    color: darkorange;
+}
+#box-color-green {
+    background-color: green;
+    color: green;
+}
+#box-color-cornflowerblue {
+    background-color:cornflowerblue;
+    color: cornflowerblue;
+}
+#box-color-dark-green  {
+    background-color: darkgreen ;
+    color: darkgreen;
+}
+#box-color-violet {
+    background-color: violet;
+    color: violet;
+}
+#box-color-dark-violet  {
+    background-color: darkviolet;
+    color: darkviolet;
+}
+#box-color-pink  {
+    background-color: pink;
+    color: pink;
+}
+#box-color-brown  {
+    background-color: brown;
+    color: brown;
+}
+#box-color-input {
+    background-color: transparent;
+    color: red;
+}
+/* ------------------------------------------------------------------------FIM GRADE DE CORES ------------------------------------------------------------------------------------------ */
