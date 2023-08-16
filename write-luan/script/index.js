@@ -11,7 +11,6 @@ window.addEventListener("load", function () {
     const imgInput = document.querySelector("#imageInput");
     const audioInput = document.querySelector("#inputAudio");
     const videoInput = document.querySelector("#inputVideo");
-    const saveAsBtn = document.querySelector("#save");
     const downBtn = document.querySelector("#downPDF");
     var papermain = document.getElementById("#papermain")
 
@@ -300,23 +299,38 @@ window.addEventListener("load", function () {
 
      } 
    }); 
-    
-    if (localStorage.currentNot != null) {
-            document.querySelector("#papermain").innerHTML =  localStorage.currentNot;
-    }
-    function saveCurrentNot () {
-        localStorage.currentNot = document.getElementById('papermain').innerHTML;
-    }
+    document.addEventListener('keypress', (event) => {
+        let  currentNote = document.getElementById('papermain').innerHTML;
+    });
+    var allNotes = new Array();
+    const notes = document.getElementById('notes');
+    const saveAsBtn = document.getElementById('save');
+    saveAsBtn.addEventListener('click', () => {
+        let saveAsCurrentNot = document.getElementById('papermain').innerHTML;
+        let nameNote = prompt('Qual o nome da nota?');
+        let d  = new Date();
+        let timeGenerateNote = d.getTime();
+        allNotes.push({ saveAsCurrentNot, nameNote, timeGenerateNote});
+        localStorage.setItem('allNotes', JSON.stringify(allNotes));
+    });
 
-    document.addEventListener ('keypress', (event) => {
-        saveCurrentNot();
-    });
-      
-    saveAsBtn.addEventListener('click' , () =>{
- 
-        saveCurrentNot();
-    
-    });
+    if (localStorage.hasOwnProperty('allNotes')) {
+        allNotes = JSON.parse(localStorage.getItem('allNotes'));
+        for (let i = 0; i < allNotes.length; i++) {
+            let li = document.createElement('li');
+            li.innerHTML = allNotes[i].nameNote;
+            notes.appendChild(li);
+        }
+        const liElements = notes.getElementsByTagName('li');
+        for ( let i=0; i < liElements.length; i ++)
+        liElements[i].addEventListener('click' , () => {
+            let index = i;
+            let saveCurrentNote = allNotes[index].saveAsCurrentNot; // Conteúdo a ser inserido no papermain.innerHTML
+            document.getElementById('papermain').innerHTML = saveCurrentNote;
+            
+            
+        });
+    }
    downBtn.addEventListener('click' , () => {
         var doc = new jsPDF();
         doc.fromHTML(document.getElementById("papermain"), // page element which you want to print as PDF
